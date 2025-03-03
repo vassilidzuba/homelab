@@ -51,7 +51,7 @@ Set the timezone:
 
 install nano
 
-   pacman -S nano
+    pacman -S nano
 
 
 edit /etc/locale.gen to enable the locales one want, and run:
@@ -110,8 +110,8 @@ and uncomment *%wheel ALL (ALL:lALL) ALL* in /etc/sudoers
 
 We can now disable the root password:
 
-   sudo passwd -d root
-   sudo passwd -lock root
+    sudo passwd -d root
+    sudo passwd -lock root
 
 
 ## Other partitions
@@ -122,7 +122,7 @@ We can add other partitions to the fstab. To do that in the installed system, on
 
 then we can mount manually the partitions we are interested in, and generate a fake fstab with
 
-   genfstab / -U > ~/fstab
+    genfstab / -U > ~/fstab
 
 and finally copy the entries we are interested in to the actual `/etc/fstab`.
 
@@ -159,7 +159,7 @@ Now we generate a key pair:
 
     ssh-keygen -t ed25519 -C 'nabu'
 
-with the default file name `~/.ssh/id_ed25519' and a passphrase
+with the default file name `~/.ssh/id_ed25519` and a passphrase
 
 we now copy the public key to odin:
 
@@ -193,10 +193,5 @@ We copy the public key to github using a browser.
 Then, after adding the githubkey to the ssh agent:
   
     git clone git@github.com:vassilidzuba/homelab.git
-
-
-
-
-
 
 
