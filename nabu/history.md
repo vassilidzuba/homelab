@@ -178,20 +178,25 @@ We install git:
 
 We set the global properties
 
-   git config --global user.email "myself@provider.com"
-   git config --global user.name "Vassili Dzuba"
-
+    git config --global user.email "myself@provider.com"
+    git config --global user.name "Vassili Dzuba"
 
 We create a ssh key pair for github:
 
-   ssh-keygen -t ed25510 -C "github"
+    ssh-keygen -t ed25510 -C "github"
 
-with the filename ~/.ssh/github_id_ed25519 and a passphrase
+with the filename `.ssh/github_id_ed25519` and a passphrase
 
 We copy the public key to github using a browser.
 
-Then, after adding the githubkey to the ssh agent:
+Then, after adding the github ssh key to the ssh agent:
   
     git clone git@github.com:vassilidzuba/homelab.git
 
 
+and, after copying the files :
+
+     git add <the files to be added>
+     git commit -m "initial"
+     pit push -u origin main
+     
