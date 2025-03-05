@@ -15,4 +15,5 @@ Of course, there is no guarantee that what is described here will work in other 
 
 ## Machines
 
-* nabu: main driver, using Arch
+* nabu: future main driver, using Arch
+* odin: an old PC with Linux Mint 22
