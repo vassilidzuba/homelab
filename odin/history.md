@@ -14,6 +14,8 @@ The installed version is *4.9.3*.
 
 ## Nginx
 
+First experiment will be to run nginx under podman.
+
 We install nginx with podman:
 
     podman pull docker.io/library/nginx:latest
@@ -32,17 +34,55 @@ To do so, we will need java:
 
 The site will be built and nginx launched by a script `launch-nginx.sh`.
 
-Th script
+The script
 
 * expects that there is a subdirectory `javadoc` with the javadoc archives produced my maven
 * will create a subdirectory `html` which will contain the uncompressed javadoc and an `index.html` file.
 
 The script is available at [scripts/launch-nginx.sh](scripts/launch-nginx.sh)
 
-In this script, the command to launbch nginx is:
+In this script, the command to launch nginx is:
 
     podman run -d -p 8080:80 -v $curdir/html:/usr/share/nginx/html:Z nginx
 
 with `-v`, we map the site content, out of the container, to the directory where nginx expects it.
+
+### Making podman rootless
+
+Second step will be to make podman rootless, as described in [https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md](https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md).
+
+Note that we don't use the most recent version of podman, so wwe use `slirp4netns` and not `pasta`. The documentation indicates to install `shadow-utils` or `newuid`, but on mint the package is `passwd`.
+
+We will create a `podman` user, without sudo priviledges:
+
+    sudo useradd -s /bin/bash -m podman
+    sudo passwd podman
+
+### Managing nginx with systemd
+
+We use here the user `podman`. The files in /home/vassili/nginx/html have been copied to /home/podman/html.
+
+We need to create a file `~/.config/containers/systemd/nginx.container`. A copy is available in [scripts/nginx.container](scripts/nginx.container).
+
+To run nginx:
+
+    systemctl --user daemon-reload
+    systemctl --user start nginx
+
+note: the magic is performed by a systemd generator installed by podman, that understands the extension *.container*.
+
+### PostgreSQL
+
+We will install PostgresSQL with podman, to be used later by gitea.
+
+    podman pull docker.io/library/postgres:latest
+
+
+### Gitea
+
+We will install Gitae, a git server.
+
+    sudo podman network create gitea-net
+    
 
 

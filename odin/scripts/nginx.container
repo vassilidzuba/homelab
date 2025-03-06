@@ -1,0 +1,13 @@
+[Unit]
+Description=Nginx container
+
+[Container]
+Image=nginx
+PublishPort=8080:80
+Volume=%h/html:/usr/share/nginx/html:Z
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
