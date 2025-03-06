@@ -44,4 +44,3 @@ cat >> html/index.html << EOF
 </html>
 EOF
 
-podman run -d -p 8080:80 -v $curdir/html:/usr/share/nginx/html:Z nginx

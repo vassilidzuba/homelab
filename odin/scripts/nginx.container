@@ -4,7 +4,7 @@ Description=Nginx container
 [Container]
 Image=nginx
 PublishPort=8080:80
-Volume=%h/html:/usr/share/nginx/html:Z
+Volume=%h/nginx/html:/usr/share/nginx/html:Z
 
 [Service]
 Restart=always
