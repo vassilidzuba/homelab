@@ -1,0 +1,19 @@
+$TTL 2d
+
+$ORIGIN manul.lan.
+
+@        IN    SOA     ns.manul.lan.   vassilidzuba.gmail.com. (
+                       20250308   ; serial
+                       12h        ; refresh
+                       15m        ; retry
+                       3w         ; expire
+                       2h         ; minimum ttl
+                       )
+
+         IN    NS      ns.manul.lan.
+
+ns       IN    A       192.168.0.20
+
+
+odin     IN    CNAME   ns
+nabu     IN    A       192.168.0.13

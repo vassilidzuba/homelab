@@ -23,7 +23,50 @@ We will create a `podman` user, without sudo priviledges:
 
     sudo useradd -s /bin/bash -m podm
     sudo passwd podman
-    
+
+## DNS
+
+We will install a DNS server in a podman container. We will use *bind9* from the Ubuntu reposirotu:
+
+    podman pull docker.io/ubuntu/bind9:9.18-22.04_beta
+
+Warning: port 53 is already used on mint by service *systemd-resolved*. It is hoverver possible to start this service after *bind9*
+because *systemd-resolved* does not open port 53 if it is already open by somebody else.
+
+The DNS will contains the data for our internal domain *manul.lan*.
+
+Bind will need two configuration files.
+
+The main configuration file will be in `/usr/local/etc/bind/nanmed.conf`. A copy is available here : [config/bind9/named.conf](config/bind9/named.conf).
+
+The zone configuration file will be in `/usr/local/etc/bind/manul-lan.zone`. A copy is availabe in [config/bind9/manul-lan.zone](config/bind9/manul-lan.zone).
+
+There is also need to create directories `/var/cache/bind`, `var/lib/bind` and `/var/log/bind`. These directories will belong to
+an user with uid 101, as it is the case of the *bind* user in the container.
+
+The container can be run with the command:
+
+    podman run \
+       -d \
+       --replace \
+       --userns=keep-id \
+       --name bind9-container \
+       -e TZ=Europe/Paris \
+       -p 53:53/tcp -p 53:53/udp \
+       -v /usr/local/etc/bind/named.conf:/etc/bind/named.conf \
+       -v /usr/local/etc/bind/manul-lan.zone:/etc/bind/manul-lan.zone \
+       -v /var/cache/bind:/var/cache/bind \
+       -v /var/lib/bind:/var/lib/bind \
+       -v /var/log/bind:/var/log \
+       docker.io/ubuntu/bind9:9.18-22.04_beta  $1
+
+That command must be run as root, to be able to open port 54.
+
+To manage this service with systemd, one creates a file `/etc/containers/systemd/bind9.container`.
+A copy is available in [config/bind9/bind9.container](config/bind9/bind9.container).
+
+
+
 ## Nginx
 
 First experiment will be to run nginx under podman.

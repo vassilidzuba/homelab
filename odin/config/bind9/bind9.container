@@ -1,0 +1,22 @@
+[Unit]
+Description=A bind9 DNS container
+
+[Container]
+Image=docker.io/ubuntu/bind9:9.18-22.04_beta
+ContainerName=bind9-container
+PublishPort=53:53/tcp
+PublishPort=53:53/udp
+Environment="TZ=Europe/Paris"
+Volume=/usr/local/etc/bind/named.conf:/etc/bind/named.conf
+Volume=/usr/local/etc/bind/manul-lan.zone:/etc/bind/manul-lan.zone
+Volume=/var/cache/bind:/var/cache/bind
+Volume=/var/lib/bind:/var/lib/bind
+Volume=/var/log/bind:/var/log
+UserNS=keep-id
+
+[Service]
+# Restart service when sleep finishes
+Restart=always
+
+[Install]
+WantedBy=default.target
