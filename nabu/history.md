@@ -126,6 +126,21 @@ then we can mount manually the partitions we are interested in, and generate a f
 
 and finally copy the entries we are interested in to the actual `/etc/fstab`.
 
+## Utilities
+
+### Smartctl
+
+To use smartctl, one need to install a package
+
+    sudo pacman -S smartmontools
+
+One can obtain the list of devices by
+
+    sudo smartctl --scan
+
+and all the info about a given device (here /dev/sda) by 
+
+    sudo smartctl --all /dev/sda
 
 ## Weyland
 
