@@ -189,6 +189,20 @@ We will install PostgresSQL with podman, to be used later by gitea.
 
     podman pull docker.io/library/postgres:latest
 
+We create a directory `/home/podman/postgresql/data` with owner 999:999.
+
+We can run the container with:
+
+    podman run -d  --name pg -p 5432:5432 -v /home/podman/postgres/data:/var/lib/postgresql/data   -e 'POSTGRES_PASSWORD=*****' postgres:latest
+
+We can also run it using systemd. We need to create a file `~/.config/containers/systemd/postgres.container`. A copy is available in [scripts/postgres.container](scripts/postgres.container), but for the password.
+
+Now, to run postgres:
+
+    systemctl --user daemon-reload
+    systemctl --user start postgres
+    loginctl enable-linger podman
+
 ## Gitea
 
 We will install Gitae, a git server.

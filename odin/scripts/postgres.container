@@ -1,0 +1,15 @@
+[Unit]
+Description=Postgres container
+
+[Container]
+Image=docker.io/library/postgres:latest
+ContainerName=pg
+PublishPort=5432:5432
+Volume=%h/postgres/data:/var/lib/postgresql/data
+Environment=POSTGRES_PASSWORD=*****
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
