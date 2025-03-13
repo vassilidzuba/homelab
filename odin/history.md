@@ -189,7 +189,7 @@ We will install PostgresSQL with podman, to be used later by gitea.
 
     podman pull docker.io/library/postgres:latest
 
-We create a directory `/home/podman/postgresql/data` with owner 999:999.
+We create a directory `/home/podman/postgresql/data`.
 
 We can run the container with:
 
