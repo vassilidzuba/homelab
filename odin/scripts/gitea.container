@@ -1,7 +1,6 @@
 [Unit]
 Description=Gitea container
 
-
 [Container]
 Image=docker.gitea.com/gitea:1.23.5-rootless
 ContainerName=gitea

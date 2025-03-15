@@ -1,0 +1,18 @@
+[Unit]
+Description=Docker registry container
+
+[Container]
+Image=docker.io/library/registry:latest
+ContainerName=registry
+PublishPort=5000:5000
+Volume=%h/registry/data:/var/lib/registry
+Environment=POSTGRES_PASSWORD=*****
+User=1001
+Group=1001
+UserNS=keep-id:uid=1001,gid=1001
+	
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

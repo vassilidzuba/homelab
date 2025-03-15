@@ -265,3 +265,35 @@ The container definition is `~podman/.config/containers/systems/gitea.containers
 
 The web interface can be accessed at `http://odin:3000`.
 
+## Image registry
+
+We will install the Docker Image registry:
+
+    podman pull docker.io/library/registry:latest
+
+To run it for test purpose (without permanent storage):
+
+    docker run -d -p 5000:5000 --restart always --name registry docker.io/library/registry:latest
+    
+To pull an image of the simple java app to the repository:
+
+    podman tag 62d2b73d11fd 192.168.0.20:5000/simple
+    podman push --tls-verify=false  192.168.0.20:5000/simple
+
+As the registry doesn't support TLS at the moment, we need to use the option *--tls-verify=false* for both *podman pull* and *podman push*.
+
+
+### Deploying the registry with systemd
+
+The container file should be in `~podman/.config/containers/systemd/registry.container`. A copy is available in
+[scripts/registry.container](scripts/registry.container).
+
+To run it:
+
+    systemctl --user daemon-reload
+    systemctl --user start registry
+
+
+
+
+     
