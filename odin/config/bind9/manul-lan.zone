@@ -17,3 +17,4 @@ ns       IN    A       192.168.0.20
 
 odin     IN    CNAME   ns
 nabu     IN    A       192.168.0.13
+freebox  IN    A       192.168.0.254

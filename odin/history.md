@@ -108,8 +108,18 @@ We will install a DNS server in a podman container. We will use *bind9* from the
 
     podman pull docker.io/ubuntu/bind9:9.18-22.04_beta
 
-Warning: port 53 is already used on mint by service *systemd-resolved*. It is howerver possible to start this service after *bind9*
+Warning: port 53 is already used on mint by service *systemd-resolved*. It is however possible to start this service after *bind9*
 because *systemd-resolved* does not open port 53 if it is already open by somebody else.
+
+The nameserver address provided by the DHCP is 192.168.0.254 for ipv4 and fd0f:ee:b0::1 for ipv6.
+
+we will replace /etc/resolv.conf by a static file, while it is currently a symbolic link to /run/systemd/resolve/resolv.conf.
+The new value will be:
+
+    domain manul.lan
+    nameserver 192.168.0.20
+    nameserver fd0f:ee:b0::1
+    search .
 
 The DNS will contains the data for our internal domain *manul.lan*.
 
@@ -138,7 +148,7 @@ The container can be run with the command:
        -v /var/log/bind:/var/log \
        docker.io/ubuntu/bind9:9.18-22.04_beta  $1
 
-That command must be run as root, to be able to open port 54.
+That command must be run as root, to be able to open port 53.
 
 To manage this service with systemd, one creates a file `/etc/containers/systemd/bind9.container`.
 A copy is available in [config/bind9/bind9.container](config/bind9/bind9.container).
@@ -280,7 +290,7 @@ To pull an image of the simple java app to the repository:
     podman tag 62d2b73d11fd 192.168.0.20:5000/simple
     podman push --tls-verify=false  192.168.0.20:5000/simple
 
-As the registry doesn't support TLS at the moment, we need to use the option *--tls-verify=false* for both *podman pull* and *podman push*.
+As configured, the registry doesn't support TLS. We need to use the option *--tls-verify=false* for both *podman pull* and *podman push*.
 
 
 ### Deploying the registry with systemd
@@ -292,6 +302,8 @@ To run it:
 
     systemctl --user daemon-reload
     systemctl --user start registry
+
+
 
 
 

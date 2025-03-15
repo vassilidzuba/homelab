@@ -1,0 +1,17 @@
+[Unit]
+Description=Nginx container
+
+[Container]
+Image=nginx
+PublishPort=8080:80
+PublishPort=8443:443
+Volume=%h/nginx/html:/usr/share/nginx/html:Z
+Volume=%h/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+Volume=%h/nginx/odin.manul.lan.crt:/etc/nginx/odin.manul.lan.crt:ro
+Volume=%h/nginx/odin.manul.lan.key:/etc/nginx/odin.manul.lan.key:ro
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
