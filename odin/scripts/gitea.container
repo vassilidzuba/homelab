@@ -1,0 +1,21 @@
+[Unit]
+Description=Gitea container
+
+
+[Container]
+Image=docker.gitea.com/gitea:1.23.5-rootless
+ContainerName=gitea
+PublishPort=3000:3000
+PublishPort=2222:2222
+Volume=%h/postgres/data:/var/lib/postgresql/data
+Volume=%h/gitea/data:/var/lib/gitea
+Volume=%h/gitea/config:/etc/gitea
+Volume=/etc/timezone:/etc/timezone:ro
+Volume=/etc/localtime:/etc/localtime:ro
+User=1001
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

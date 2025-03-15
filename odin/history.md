@@ -2,7 +2,7 @@
 
 ## context
 
-This machine is an old PC running Linux Mint.
+This machine is an old PC running Linux Mint. Its IP address is 192.168.0.20.
 
 ## Podman
 
@@ -205,13 +205,63 @@ Now, to run postgres:
 
 ## Gitea
 
-We will install Gitae, a git server.
+We will install Gitea, a git server, in a rootless container.
 
-    sudo podman network create gitea-net
+There is an image available:
 
-## Nexus
+    podman pull docker.io/gitea/gitea:latest-rootless
 
-As user podman:
+### Database preparation
 
-    podman volume create nexus-data
-     
+We need to create gitea user and database in postgres: We assume that the container name of postgres is *pg*.
+
+    podman exec -it pg bash
+
+in the container, one launches *psql* as root (no password required):
+
+    su -c "psql" - postgres
+    
+in psql:
+
+    CREATE ROLE gitea WITH LOGIN PASSWORD 'gitea';
+    CREATE DATABASE giteadb WITH OWNER gitea TEMPLATE template0 ENCODING UTF8 LC_COLLATE 'en_US.UTF-8' LC_CTYPE 'en_US.UTF-8';
+    
+
+One need to add two lines to pg_hba.conf!
+
+    local    giteadb    gitea    scram-sha-256
+    host    giteadb    gitea    192.0.2.10/32    scram-sha-256t
+
+Within the container, this file is in directory `/var/lib/postgresql/data`. It can be accessed from outside the container at `/home/podman/postgres/data`.
+
+Next one need to restart postgres.
+
+### Running Gitea
+
+One can run gitea with a docker compose file:
+
+    version: "2"
+    
+    services:
+      server:
+        image: docker.gitea.com/gitea:1.23.5-rootless
+        restart: always
+        user: 1001
+        volumes:
+          - ./data:/var/lib/gitea
+          - ./config:/etc/gitea
+          - /etc/timezone:/etc/timezone:ro
+          - /etc/localtime:/etc/localtime:ro
+        ports:
+          - "3000:3000"
+          - "2222:2222"
+
+
+### Running gitea with systemd
+
+The container definition is `~podman/.config/containers/systems/gitea.containers`. There is acopy in [scripts/gitea.container](scripts/gitea.container).
+
+### Accessing gitea
+
+The web interface can be accessed at `http://odin:3000`.
+
