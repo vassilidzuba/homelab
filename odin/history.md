@@ -340,3 +340,28 @@ and:
 
     systemctl --user daemon-reload
     systemctl --user start sonarqube
+
+## Nexus3
+
+The image is :
+
+    podman pull docker.io/sonatype/nexus3:latest
+
+We will use a persistent volume
+
+    podman volume create nexus-data
+    podman run -d -p 8081:8081 -v nexus-data:/sonatype-work  --name nexus sonatype/nexus3
+
+To get the admin password, connect to the container:
+
+     podman exec -it nexus bash
+
+Tu use nexus from maven, one must specify a `settings.xml` file in `~/.m2.settings.xml`. A copy is available in
+[config/nexus/settings.xml](config/nexus/settings.xml), with the password hidden.
+
+To deploy using systemd, see [scripts/nexus.container](scripts/nexus.container). The commands are:
+
+    systemctl --user daemon-reload
+    systemctl --user start nexus
+
+     

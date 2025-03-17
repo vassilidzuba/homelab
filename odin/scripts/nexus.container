@@ -1,0 +1,14 @@
+[Unit]
+Description=Nexus container
+
+[Container]
+Image=docker.io/sonatype/nexus3:latest
+ContainerName=nexus
+PublishPort=8081:8081
+Volume=nexus-data:/nexus-data
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
