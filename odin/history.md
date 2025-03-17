@@ -4,6 +4,18 @@
 
 This machine is an old PC running Linux Mint. Its IP address is 192.168.0.20.
 
+The ports exposed by the various services are:
+
+* 53! bind9
+* 2222: gitea (ssh)
+* 3000: gitea (http)
+* 5000: registry
+* 5432: postgres
+* 8080: nginx (http)
+* 8081: nexus (http)
+* 8483: nginx (https)
+* 9000: sonarqube (http)
+
 ## Podman
 
 We first install podman:
