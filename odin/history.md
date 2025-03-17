@@ -304,8 +304,32 @@ To run it:
     systemctl --user start registry
 
 
+## SonarQube
 
+we can run a test version of SonarQube with the command:
 
+    podman run \
+        -d \
+        --name sonarqube-custom \
+        --stop-timeout 3600 \
+        -v /home/podman/sonarqube/data:/opt/sonarqube/data \
+        -v /home/podman/sonarqube/logs:/opt/sonarqube/logs \
+        -v /home/podman/sonarqube/extensions:/opt/sonarqube/extensions \
+        -p 9000:9000 \
+        docker.io/library/sonarqube:community
 
+We need to obtain a authentication token from the SonarQube instance. The default user/password are admin/admin.
 
-     
+To analyse the modules, one need to add the plugin in the root POM:
+
+    <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <version>5.0.0.4389</version>
+    </plugin>
+
+We can analyse the project *yacic* with the command:
+
+    mvn -Dsonar.host.url=http://192.168.0.20:9000 -Dsonar.token=*****  sonar:sonar
+
+Note: for the time being, we stay with the H2 database.
