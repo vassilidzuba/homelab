@@ -333,3 +333,10 @@ We can analyse the project *yacic* with the command:
     mvn -Dsonar.host.url=http://192.168.0.20:9000 -Dsonar.token=*****  sonar:sonar
 
 Note: for the time being, we stay with the H2 database.
+
+We will now run it under systemd. See [scripts/sonarqube.container](scripts/sonarqube.container) for the container description file, to be stored in `~/.config/containers/systemd/sonarqube.container`.
+
+and:
+
+    systemctl --user daemon-reload
+    systemctl --user start sonarqube

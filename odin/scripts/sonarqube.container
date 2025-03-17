@@ -1,0 +1,18 @@
+[Unit]
+Description=SonarQube container
+
+
+[Container]
+Image=docker.io/library/sonarqube:community
+ContainerName=sonarqube
+PublishPort=9000:9000
+Volume=%h/sonarqube/data:/opt/sonarqube/data
+Volume=%h/sonarqube/logs:/opt/sonarqube/logs
+Volume=%h/sonarqube/extensions:/opt/sonarqube/extensions
+
+[Service]
+Restart=always
+StopTimeout=3600
+
+[Install]
+WantedBy=default.target
