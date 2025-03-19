@@ -215,3 +215,28 @@ and, after copying the files :
      git commit -m "initial"
      pit push -u origin main
      
+
+## Use DNS on odin
+
+The `/etc/resolv.conf` id recreated at each boot by *dhcpcd*. We have now the DNS server on Odin
+which is niot known from the freebox. So we need to modify the file `/etc/dhcpcd.conf` to add
+
+    nohook resolv.conf
+
+And of course in resolv.conf , we replace *192.168.0.254* by *192.168.0.20*.
+
+## Access to SAMBA shares
+
+To list the shares, one can use:
+
+    smbclient -L odin.manul.lan -U%
+
+This requird the existence of a file `/etc/samba/smb.conf` but it may be empty.
+
+There are several ways to mount the Samba shares. We will use *systemd* for that.
+
+For each share, we define a .mount file in /etc/systemd/system. The name of the file must correspond to the 
+mount point.for instance, *mnt-red1.mount* corresponds to */mnt/red1*.
+Here is a sample of.mount file:
+
+Here is a sample of .moujnt file foracifgs share: [mnt-red1.mount](scripts/mnt-red1.mount).

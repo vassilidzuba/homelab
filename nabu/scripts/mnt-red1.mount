@@ -1,0 +1,14 @@
+[Unit]
+Description=Mount share red1 from Odin
+
+[Mount]
+What=//odin.manul.lan/red1
+Where=/mnt/red1
+Options=credentials=/etc/samba/credentials/red1,rw
+Type=cifs
+TimeoutSec=30
+
+[Install]
+WantedBy=multi-user.target
+
+
