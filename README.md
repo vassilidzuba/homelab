@@ -18,3 +18,4 @@ Of course, there is no guarantee that what is described here will work in other 
 * [nabu](nabu/README.md): future main driver, using Arch
 * [odin](odin/README.md): an old PC with Linux Mint 22
 * [nidaba1](nidaba/README.md), [nidaba2](nidaba/README.md) and [nidaba3](nidaba/README.md): three VM under virtualbox, running ubuntu server
+* [assur](assur/README.md), a small NAS

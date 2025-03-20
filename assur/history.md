@@ -12,7 +12,6 @@ While waiting for the installation of an ubuntu server,minimalchanges will be do
     sudo zpool create nas1 nvme0n1
 
 * add host to the domain (with bin9 config in odin)
-* add samba share (*nas1*)   
+* add samba share (*nas1*) ;addsamba user (gmk)
 * add package openssh-server; enable service ssh
-
 
