@@ -1,0 +1,15 @@
+[Unit]
+Description=Mount share nas1 from Assur
+Requires=network-online.target
+After=network-online.target systemd-resolved.service
+Wants=network-online.target systemd-resolved.service
+
+[Mount]
+What=//assur.manul.lan/nas1
+Where=/mnt/nas1
+Options=credentials=/etc/samba/credentials/nas1,rw,uid=1000,gid=1000
+Type=cifs
+TimeoutSec=30
+
+[Install]
+WantedBy=multi-user.target

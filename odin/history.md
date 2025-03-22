@@ -194,6 +194,9 @@ The script will reside in ~podman/nginx.
 
 The script is available at [scripts/launch-nginx.sh](scripts/launch-nginx.sh)
 
+Note: when replacing the files in the shared html directory from outside the container,they are not visible
+from inside the container;one has to restart it.
+
 ### Managing nginx with systemd
 
 We use here the user `podman`.
@@ -315,6 +318,19 @@ To run it:
     systemctl --user daemon-reload
     systemctl --user start registry
 
+### useful commands
+
+The registry has a REAS API available at [https://distribution.github.io/distribution/spec/api/](https://distribution.github.io/distribution/spec/api/).
+
+To obtain the list of repositories:
+
+    curl http://odin:5000/v2/_catalog
+
+to obtain the tags of a given repository:
+
+    curl http://odin:5000/v2/<repo>/tags/list
+
+
 
 ## SonarQube
 
@@ -376,4 +392,19 @@ To deploy using systemd, see [scripts/nexus.container](scripts/nexus.container).
     systemctl --user daemon-reload
     systemctl --user start nexus
 
-     
+
+## Mount samba share from Assur
+
+We mount it using systemd (like with *Nabu*). So, we need to :
+
+* put [mnt-nas1.mount](config/samba/mnt-nas1.mount) in `/etc/systemd/system`
+* put credential file [nas1](config/samba/nas1) in `/etc/samba/credentials/nas1` (in the shown file the passsword has been masked)
+* enable end start service
+
+    sudo systemctl daemon-reload
+    sudo systemctl start mnt-nas1.mount
+    sudo systemctl enable mnt-nas1.mount
+
+Note that the `credentials` should have mode 777, and the credential file mode 660.
+
+On the server Assur, user *gmk* has uid 1000. As we specifgy uid 1000 in the mount options, the mounted directory will be seen as belonging to user *vassili*, that has uid 1000on Odin.
