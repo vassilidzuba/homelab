@@ -368,6 +368,19 @@ and:
 
     systemctl --user daemon-reload
     systemctl --user start sonarqube
+    
+### Using sonar from maven in container
+
+As the token should be ketp confidential, we first store the token in a podman secret, `sonar-token`.
+
+The token will be made available in the container by the podman option `--secret sonar-token,type=env,target=token`. 
+That means that the environment variable `$token` will be available in the container but not when running the podman command. I didn't find a simpler way that to create another image
+`192.168.0.20:5000/maven-sonar:java21` using the Dockerfile:
+
+    from docker.io/library/maven:3.9.9-amazoncorretto-21-alpine
+    
+    CMD /usr/bin/mvn -Dsonar.token=$token sonar:sonar
+
 
 ## Nexus3
 
