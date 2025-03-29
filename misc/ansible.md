@@ -66,7 +66,45 @@ We can now use the inventory as such:
     ansible -i 00-inventory.yml -u vassili -m ping all
 
 
+## Using Ansible to test on containers
 
+To be able to have fresh installs, Xavki suggest to use containers as the target of the Ansible runs. The image of the target is
+given in [https://gitlab.com/xavki/presentation-ansible-fr/-/blob/master/14-plateforme-dev-docker/Dockerfile?ref_type=heads](https://gitlab.com/xavki/presentation-ansible-fr/-/blob/master/14-plateforme-dev-docker/Dockerfile?ref_type=heads). We will simply modify it to use a more recent version of debian: `docker.io/library/debian!stable` and remove the `stretch-backports`..
 
+The tag of the image will be `192.168.0.20:5000/ansible-playground-debian:latest`.
 
+The build command is:
+
+    podman build -t 192.168.0.20:5000/ansible-playground-debian:latest -f Dockerfile
+
+To use that approach, we need ro run rootful containers, so that podman can create a bridge network.
+As user `podman` is not a sudoer, we create the containers using user `vassili` but will still run ansible from user `podman`.
+
+To control the containers, we use the script [https://gitlab.com/xavki/presentation-ansible-fr/-/blob/master/14-plateforme-dev-docker/new_deploy.sh?ref_type=heads](). We oerform the following modifications:
+
+* we use the `id_ed25519.pub` key instead of `id_rsa.pub`
+* we use our container image
+* we replace /srv/data by /home/podman/ansible/data
+* we perform a `sudo podman pull  --tls-verify=false 192.168.0.20:5000/ansible-playground-debian:latest`
+* we create the ansible directory in podman home directory
+
+The ansible directory (set in the script) is `/home/podman/ansible/withdocker`.
+
+We can the go in the ansible directory and run
+
+    ansible -i 00-inventory.yml -u podman -m ping all
+    
+### Hosts
+
+As we stop and restart these containers, the IP address changes. To keep the playbook valid, we add the containers IP addresses
+to the DNS into a domain called ansible.lan.
+Its configuration file is in `/usr/local/etc/bind/ansible-lan.zone` and contains the declarations
+
+    alpha    IN    A     10.88.0.42
+    beta     IN    A     10.88.0.43
+    gamma    IN    A     10.88.0.44
+
+where the actual IP addresses will need to change when the containers are restarted.
+
+note: after restart of the containers, the sshd server wasn't running.
 
