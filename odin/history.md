@@ -16,6 +16,15 @@ The ports exposed by the various services are:
 * 8483: nginx (https)
 * 9000: sonarqube (http)
 
+## Startup
+
+With the current configuration, the disks are not mounted automatically.
+They can be mounted using the desktop environment UI, or in console mode using `udisksctl`, for instance:
+
+    udisksctl -b /dev/sda1
+
+Note: that 
+
 ## Podman
 
 We first install podman:
