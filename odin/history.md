@@ -21,7 +21,7 @@ The ports exposed by the various services are:
 With the current configuration, the disks are not mounted automatically.
 They can be mounted using the desktop environment UI, or in console mode using `udisksctl`, for instance:
 
-    udisksctl -b /dev/sda1
+    udisksctl mount -b /dev/sda1
 
 Note: that 
 
@@ -42,7 +42,7 @@ Note that we don't use the most recent version of podman, so we use `slirp4netns
 
 We will create a `podman` user, without sudo priviledges:
 
-    sudo useradd -s /bin/bash -m podm
+    sudo useradd -s /bin/bash -m podman
     sudo passwd podman
     
 We create a ssh key pair for podman:
@@ -164,6 +164,7 @@ The container can be run with the command:
        -p 53:53/tcp -p 53:53/udp \
        -v /usr/local/etc/bind/named.conf:/etc/bind/named.conf \
        -v /usr/local/etc/bind/manul-lan.zone:/etc/bind/manul-lan.zone \
+       -v /usr/local/etc/bind/ansible-lan.zone:/etc/bind/ansible-lan.zone \
        -v /var/cache/bind:/var/cache/bind \
        -v /var/lib/bind:/var/lib/bind \
        -v /var/log/bind:/var/log \
