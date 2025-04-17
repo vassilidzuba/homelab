@@ -425,8 +425,10 @@ We mount it using systemd (like with *Nabu*). So, we need to :
 * enable end start service
 
     sudo systemctl daemon-reload
-    sudo systemctl start mnt-nas1.mount
-    sudo systemctl enable mnt-nas1.mount
+    sudo systemctl start mnt-yacic.mount
+    sudo systemctl enable mnt-yacic.mount
+    sudo systemctl start mnt-homelab.mount
+    sudo systemctl enable mnt-homelab.mount
 
 Note that the `credentials` should have mode 777, and the credential file mode 660.
 

@@ -90,7 +90,7 @@ To control the containers, we use the script [https://gitlab.com/xavki/presentat
 
 The ansible directory (set in the script) is `/home/podman/ansible/withdocker`.
 
-We can the go in the ansible directory and run
+We can then go in the ansible directory and run
 
     ansible -i 00-inventory.yml -u podman -m ping all
     
