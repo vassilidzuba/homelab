@@ -5,7 +5,7 @@
  Installed proxmox on /sda which was the additional SSD drive, not the on-board one.
  There seems to hae a certificate problem on the 
  
- ## remove the subbscription dialog and update server
+ ## remove the subscription dialog and update server
  
  see [https://www.youtube.com/watch?v=kqZNFD0JNBc&t=64s](https://www.youtube.com/watch?v=kqZNFD0JNBc&t=64s).
  
@@ -15,7 +15,10 @@
  
  ### Install OS in VM
  
- The hostname is `damu1`.
- The user is `vassili`.
+ The initial user is `vassili`.
  
- Details are in [history-damu1.md](history-damu1.md).
+The VMs are currently :
+
+* damu1, an ubuntu server, details are in [history-damu1.md](history-damu1.md).
+* damu2, a fedora server, details are in [history-damu2.md](history-damu2.md).
+* damu3, a Windows machine, details are in [history-damu3.md](history-damu3.md).

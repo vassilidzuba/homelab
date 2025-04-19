@@ -17,7 +17,7 @@ Note: after the first reboot, the network was nor available.
 It seems that was an error in the file `/etc/netplan/50-cloud-init.yaml`, where the interface name was incorrect (`enp5s0` instead of `enp3s0`).
 After correcting and executing `sudo netpplan apply`, the network was available.
 
-Ubuntu server uses by default `systemd-networkd`, but it cound be possible to configure it to use `NetworkManager`.
+Ubuntu server uses by default `systemd-networkd`, but it could be possible to configure it to use `NetworkManager`.
 
 It is also necessary to change the addresses of the DNS, to use the DNS on `odin`. That can be done also by *netplan*. The configuration file `/etc/netplan/50-cloud-init.yaml`
 will contain:
