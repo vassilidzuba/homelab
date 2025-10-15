@@ -95,7 +95,7 @@ install grub
     grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
     grub-mkconfig -o /boot/grub/grub.cfg
 
-In my case, I have another distrtibution that i want to add to the grub menu.
+In my case, I have another distribution that i want to add to the grub menu.
 
     pacman -S os-prober
     mount --mkdir /dev/sda3 /mnt/olddistro
@@ -107,9 +107,9 @@ We can now reboot in the new install
 
 ## Security
 
-We create a new user:
+We create a new user (here *myuser* as an example):
 
-    adduser -m -G users,wheel myuser
+    useradd -m -G users,wheel myuser
     passwd myuser
 
 Allow sudo:
@@ -121,7 +121,7 @@ and uncomment *%wheel ALL (ALL:lALL) ALL* in /etc/sudoers
 We can now disable the root password:
 
     sudo passwd -d root
-    sudo passwd -lock root
+    sudo passwd --lock root
 
 
 ## Other partitions
@@ -156,8 +156,7 @@ and all the info about a given device (here /dev/sda) by
 
 Packages:
 
-* nvidia driver: nvidia-open
-* session nanager: gdm (?)
+* nvidia driver: nvidia-open, nvidia-utils, egl-wayland
 * compositor: hyprland
 
 To launch, `hyprland`
