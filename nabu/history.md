@@ -8,9 +8,19 @@ It is aimed at becoming my main driver, using Arch.
 
 Arch will be installed in /dev/sda4. There is already a distro in /dev/sda3. The UEFI partition is /dev/sda1. The swap partition is /dev/sda2.
 
+## Download the media
+
+Download the media from archlinux site.
+
+If on windows, check the sha256 key using:
+
+    certutil -hashfile  archlinux-2025.10.01-x86_64.iso  SHA256
+
+A bootable usb key can be created using *rufus*.
+
 ## Base install
 
-(2025-02-06)
+(2025-10-01)
 
 The installation manual is at [https://wiki.archlinux.org/title/Installation_guide](https://wiki.archlinux.org/title/Installation_guide). 
 What follows is not intended to replace the installation manual, only indicate the essential commands I used during this installation.
@@ -82,7 +92,7 @@ install required packages:
 
 install grub
 
-    install-grub --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+    grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
     grub-mkconfig -o /boot/grub/grub.cfg
 
 In my case, I have another distrtibution that i want to add to the grub menu.
