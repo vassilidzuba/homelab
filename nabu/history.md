@@ -152,11 +152,14 @@ and all the info about a given device (here /dev/sda) by
 
     sudo smartctl --all /dev/sda
 
-## Weyland
+## Weyland and Hyprland
 
 Packages:
 
-* nvidia driver: nvidia-open, nvidia-utils, egl-wayland
+* nvidia driver: nvidia-open
+* righs management: polkit
+* terminal: kitty
+* browser: firefox (with pipewire-jack)
 * compositor: hyprland
 
 To launch, `hyprland`
@@ -207,7 +210,7 @@ We set the global properties
 
 We create a ssh key pair for github:
 
-    ssh-keygen -t ed25510 -C "github"
+    ssh-keygen -t ed25519 -C "github"
 
 with the filename `.ssh/github_id_ed25519` and a passphrase
 
