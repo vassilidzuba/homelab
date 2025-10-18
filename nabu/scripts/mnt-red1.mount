@@ -4,7 +4,7 @@ Description=Mount share red1 from Odin
 [Mount]
 What=//odin.manul.lan/red1
 Where=/mnt/red1
-Options=credentials=/etc/samba/credentials/red1,rw
+Options=credentials=/etc/samba/credentials/red1,rw,uid=1000,gid=1000
 Type=cifs
 TimeoutSec=30
 

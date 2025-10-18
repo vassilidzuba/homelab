@@ -416,13 +416,15 @@ To deploy using systemd, see [scripts/nexus.container](scripts/nexus.container).
     systemctl --user start nexus
 
 
-## Mount samba share from Assur
+## Mount CIFS shares from Assur
 
 We mount it using systemd (like with *Nabu*). So, we need to :
 
 * put [mnt-nas1.mount](config/samba/mnt-nas1.mount) in `/etc/systemd/system`
 * put credential file [nas1](config/samba/nas1) in `/etc/samba/credentials/nas1` (in the shown file the passsword has been masked)
 * enable end start service
+
+The commands are:
 
     sudo systemctl daemon-reload
     sudo systemctl start mnt-yacic.mount

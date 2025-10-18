@@ -214,12 +214,11 @@ We create a ssh key pair for github:
 
 with the filename `.ssh/github_id_ed25519` and a passphrase
 
-We copy the public key to github using a browser.
+We now copy the public key to github using a browser.
 
 Then, after adding the github ssh key to the ssh agent:
   
     git clone git@github.com:vassilidzuba/homelab.git
-
 
 and, after copying the files :
 
@@ -231,24 +230,69 @@ and, after copying the files :
 ## Use DNS on odin
 
 The `/etc/resolv.conf` id recreated at each boot by *dhcpcd*. We have now the DNS server on Odin
-which is niot known from the freebox. So we need to modify the file `/etc/dhcpcd.conf` to add
+which is not known from the freebox. So we need to modify the file `/etc/dhcpcd.conf` to add
 
     nohook resolv.conf
 
-And of course in resolv.conf , we replace *192.168.0.254* by *192.168.0.20*.
+And of course in resolv.conf , we replace *192.168.0.254* by *192.168.0.20* and add
 
-## Access to SAMBA shares
+    search manul.lan
+
+where *manul.lan* is the name of the local network.
+
+## Access to CIFS shares
+
+One first need to install the package `smbclient`.
 
 To list the shares, one can use:
 
     smbclient -L odin.manul.lan -U%
 
-This requird the existence of a file `/etc/samba/smb.conf` but it may be empty.
+In what folows, we will access the sahe *red1*.
 
 There are several ways to mount the Samba shares. We will use *systemd* for that.
 
 For each share, we define a .mount file in /etc/systemd/system. The name of the file must correspond to the 
-mount point.for instance, *mnt-red1.mount* corresponds to */mnt/red1*.
-Here is a sample of.mount file:
+mount point. For instance, *mnt-red1.mount* corresponds to */mnt/red1*.
 
-Here is a sample of .moujnt file foracifgs share: [mnt-red1.mount](scripts/mnt-red1.mount).
+Here is the *.mount* file for the CIFS share: [mnt-red1.mount](scripts/mnt-red1.mount).
+
+One also need to create a credential file. This file will be stored in the directory `/etc/Sambe/credentials` and 
+will have as name the name of the mount point, for instance:
+
+    /etc/samba/credentials/red1
+
+It will contain the username and password of the share:
+
+    username=vassili
+    password=mysecretpassword
+
+Note that:
+
+* `/etc/samba/credentials` should have mod 700
+* `/etc/samba/credentials/red1` should have mod 600
+
+To launch the service for that share, we need to run:
+
+    sudo systemctl daemon-reload
+    sudo systemctl start mnt-red1.mount
+    sudo systemctl enable mnt-red1.mount
+
+
+# Tools
+
+Here are various tools that one can install.
+
+## Editors and IDE
+
+* emacs (package `emacs-weyland`)
+
+## File managers
+
+* thunar (packages `thunar` and `thunar-archive-plugin`)
+
+
+## Miscellaneous
+
+
+# tree (packge `tree`)
