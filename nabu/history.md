@@ -164,6 +164,8 @@ Packages:
 
 To launch, `hyprland`
 
+The documentation of the configuration of hyprland is in [hyprland.md](hyprland.md).
+
 
 ## ssh
 
@@ -195,7 +197,7 @@ we now copy the public key to odin:
 we can launch and use the ssh agent
 
     eval "$(ssh-agent)"
-    ssh-add -i ~/.ssh/id_ed25519
+    ssh-add ~/.ssh/id_ed25519
 
 ## Git
 
@@ -216,7 +218,12 @@ with the filename `.ssh/github_id_ed25519` and a passphrase
 
 We now copy the public key to github using a browser.
 
-Then, after adding the github ssh key to the ssh agent:
+We need to add the github ssh key to the ssh agent:
+
+    eval "$(ssh-agent)"
+    ssh-add ~/.ssh/github_id_ed25519
+
+and now we can clone the repository:
   
     git clone git@github.com:vassilidzuba/homelab.git
 
@@ -294,5 +301,5 @@ Here are various tools that one can install.
 
 ## Miscellaneous
 
+* tree (packge `tree`)
 
-# tree (packge `tree`)
