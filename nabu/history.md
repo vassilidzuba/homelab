@@ -136,9 +136,17 @@ then we can mount manually the partitions we are interested in, and generate a f
 
 and finally copy the entries we are interested in to the actual `/etc/fstab`.
 
-It is also possible to add them manually, by adding for instance the following line to `/etc/fstab`:
+It is also possible to add them manually. To obtain the list of existing partitions, one uses:
+
+    lsblk -f
+
+To add a linux partition, one adds for instance the following line to `/etc/fstab`:
 
     UUID=c8267a4b-e8dc-4291-b565-aac0e5147e2b /mnt/olddistro ext4   rw,noatime 0 0
+
+To add a ntfs partition, one uses for instance the following line:
+
+    UUID=04100F34100F2C6C    /mnt/win    ntfs    defaults,uid=1000,gid=1000    0 0
 
 To mount the newly declared partitions:
 
