@@ -250,9 +250,12 @@ and, after copying the files :
      git add <the files to be added>
      git commit -m "initial"
      pit push -u origin main
-     
 
-## Use DNS on odin
+To use the `gitea` server, one needs to add the ssh key (we will use the `nabu` key)
+
+## Use local DNS
+
+We have a local DNS on `odin` at 192.168.0.20, defining a local network `manul.lan`.
 
 The `/etc/resolv.conf` id recreated at each boot by *dhcpcd*. We have now the DNS server on Odin
 which is not known from the freebox. So we need to modify the file `/etc/dhcpcd.conf` to add
@@ -303,10 +306,120 @@ To launch the service for that share, we need to run:
     sudo systemctl start mnt-red1.mount
     sudo systemctl enable mnt-red1.mount
 
+# Development
+
+* base-devel (package `base-devel`)
+
+## java
+
+To install:
+
+    sudo pacman -S jdk-openjdk
+    sudo pacman -S jdk21-openjdk
+
+To list the available environments:
+
+    archlinux-java status
+
+We need to install some utilities:
+
+   sudo pacman -S maven
+
+We need to configura maven by putting the `settings.xml` filer into `~/.m2`.
+
+### Using maven
+
+We first clone the project in `/mnt/git`:
+
+    git clone ssh://git@odin.manul.lan:2222/vassili/example1
+
+and then buid it:
+
+   cd ~/git/example1
+   mvn clean package
+   java -jar target/example1-0.0.1-SNAPSHOT.jar
+
+note: using java 25 required lombok at version 1.18.40 at least.
+
+### Using gradle
+
+    cd ~/git
+    git clone ssh://git@odin.manul.lan:2222/vassili/hellogradle
+    cd hellogradle
+    chmod 775 gradlew
+    # if we need to upgrade the wrapper
+    ./gradlew wrapper --gradle-version latest
+    ./gradle build
+
+Note: one might need to set an older version of java to upgrade the wrapper
+
+## Golang
+
+To install the compiler/
+
+    pacman -S go
+
+To compile a program/
+
+    git clone ssh://git@odin.manul.lan:2222/vassili/hellogo
+    cd hellogo
+    go build
+    ./hello
+   
+## Zig
+
+To install the compiler:
+
+    sudo pacman -S zig
+
+To run a simple program:
+
+    git clone ssh://git@odin.manul.lan:2222/vassili/hellozig
+    cd hellozig
+    zig build run
+
+## Rust
+
+To install the compiler:
+
+    sudo pacman -S rust
+
+To run a simple program:
+
+    git clone ssh://git@odin.manul.lan:2222/vassili/hellorust
+    cd hellorust
+    cargo build
+    ./target/debug/hellorust 
+
+## TeX
+
+TeX will be run using podman.
 
 # Tools
 
 Here are various tools that one can install.
+
+## AUR
+
+We first install `yay`
+
+    cd /opt
+    sudo git clone https://aur.archlinux.org/yay.git
+    sudo chown -R vassili:vassili yay
+    cd yay
+    makepkg -si
+
+## Containers
+
+- flatpak (package `flatpak`)
+- podman (package `podman`, using runtime `crun`)
+
+## Ansible
+
+Install the package/
+
+    sudo pacman -S ansible-core
+
 
 ## Editors and IDE
 
@@ -320,4 +433,5 @@ Here are various tools that one can install.
 
 * tree (packge `tree`)
 * fastfetch (package `fastfetch`)
-
+* yay (package `yay`)
+* dos2unix (package `dos2unix`)
