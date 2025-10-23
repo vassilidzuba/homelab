@@ -442,10 +442,13 @@ We start the libvirt daemon:
     sudo systemctl start virtlogd.service
     sudo systemctl enable libvirtd.service
 
+We need to start automatically the default network:
+
+   sudo virsh net-autostart --network default
+
 We modify the file `/etc/nsswitch.conf` to allow to access the geust by its host name:
 
     hosts: mymachines resolve [!UNAVAIL=return] files libvirt libvirt_guest myhostname dns
-
 
 We download an ISO and put it into /var/lib/libvirt/images, for instance `ubuntu-25.10-desktop-amd64.iso`.
 We finally launch `virt-manager` and create the virtual machine using its GUI.

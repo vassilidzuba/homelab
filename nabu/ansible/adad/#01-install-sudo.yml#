@@ -1,0 +1,29 @@
+- name: install sudo   hosts: all
+  remote_user: root
+  tasks:
+  - name: copy debian.sources
+    copy:
+      src: ./data/debian.sources
+      dest: /etc/apt/sources.list.d/debian.sources
+      backup: no
+      mode: 0644
+      owner: root
+      group: root
+  - name: copy debian-security.sources
+    copy:
+      src: ./data/debian-security.sources
+      dest: /etc/apt/sources.list.d/debian-security.sources
+      backup: no
+      mode: 0644
+      owner: root
+      group: root
+  - name: install
+    apt:
+      name: sudo
+      state: present
+  - name: add to group
+    user:
+      name: vassili
+      groups: sudo
+      append: yes
+
