@@ -18,7 +18,7 @@ If on windows, check the sha256 key using:
 
 A bootable usb key can be created using *rufus*.
 
-## Base install
+# Base install
 
 (2025-10-01)
 
@@ -95,7 +95,7 @@ install grub
     grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
     grub-mkconfig -o /boot/grub/grub.cfg
 
-In my case, I have another distribution that i want to add to the grub menu.
+In my case, I have another distribution that I want to add to the grub menu.
 
     pacman -S os-prober
     mount --mkdir /dev/sda3 /mnt/olddistro
@@ -153,6 +153,14 @@ To mount the newly declared partitions:
     sudo systemctl daemon-reload
     sudo mount -a
 
+## Shell
+
+We install zsh:
+
+    sudo pacman -S zsh
+    chsh -s /usr/bin/zsh
+
+The file `.zshrc` is available [here](config/zshrc).
 
 ## Utilities
 
@@ -414,11 +422,44 @@ We first install `yay`
 - flatpak (package `flatpak`)
 - podman (package `podman`, using runtime `crun`)
 
+## Virtualization
+
+We install qemu:
+
+    sudo pacman -S qemu-full
+    sudo pacman -S virt-manager
+    sudo pacman -S dnsmasq
+
+We configure libvirt:
+
+    sudo usermod -a -G libvirt vassili
+    mkdir ~/vm
+    sudo chown "$USER":libvirt-qemu ~/vm
+
+We start the libvirt daemon:
+
+    sudo systemctl start libvirtd.service
+    sudo systemctl start virtlogd.service
+    sudo systemctl enable libvirtd.service
+
+We modify the file `/etc/nsswitch.conf` to allow to access the geust by its host name:
+
+    hosts: mymachines resolve [!UNAVAIL=return] files libvirt libvirt_guest myhostname dns
+
+
+We download an ISO and put it into /var/lib/libvirt/images, for instance `ubuntu-25.10-desktop-amd64.iso`.
+We finally launch `virt-manager` and create the virtual machine using its GUI.
+We will call the host `abzu`.
+
+Note that if we run an apache2 service on the guest, it will thus be available from the host at address `http://abzu`.
+
 ## Ansible
 
-Install the package/
+Install the package:
 
     sudo pacman -S ansible-core
+
+The details of the configuration are [here](ansible.md).
 
 
 ## Editors and IDE
@@ -431,7 +472,10 @@ Install the package/
 
 ## Miscellaneous
 
-* tree (packge `tree`)
-* fastfetch (package `fastfetch`)
-* yay (package `yay`)
-* dos2unix (package `dos2unix`)
+- tree (packge `tree`)/ a file tree display tool
+- fastfetch (package `fastfetch`): to display the environmant
+- yay (package `yay`): to access AUR
+- dos2unix (package `dos2unix`): to convert dos/windows text files into linux format
+- htop (package `htop`): extension of top
+- gnupg (package `gnupg`): to check signatures
+- yazi 5package `yazi`): a terminal based file manager
