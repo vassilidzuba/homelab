@@ -2,6 +2,14 @@
   hosts: all
   remote_user: root
   tasks:
+  - name: copy sources.list
+    copy:
+      src: ./data/sources.list
+      dest: /etc/apt/sources.list
+      backup: yes
+      mode: 0644
+      owner: root
+      group: root
   - name: copy debian.sources
     copy:
       src: ./data/debian.sources
@@ -18,6 +26,10 @@
       mode: 0644
       owner: root
       group: root
+  - name: apt update and upgrade
+    apt:
+      update_cache: yes
+      upgrade: 'yes'
   - name: install
     apt:
       name: sudo

@@ -20,6 +20,7 @@ Of course, there is no guarantee that what is described here will work in other 
 * [nidaba1](nidaba/README.md), [nidaba2](nidaba/README.md) and [nidaba3](nidaba/README.md): three VM under virtualbox, running ubuntu server
 * [assur](assur/README.md), a small NAS
 * [damu](damu/README.md), a obsolete mini-pc, used to play with proxmon and ansible
+* [shamash](shamash/README.md), a VM running nixos
 
 There are also some docs not linkled to specific machines:
 

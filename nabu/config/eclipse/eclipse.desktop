@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Eclipse
+#for ex: Icon=/home/your username/Desktop/adt-bundle-linux-x86_64-20131030/eclipse/icon.xpm
+Icon=/home/vassili/eclipse/java-2025-09/eclipse/eclipse.xpm
+#for ex: Icon=/home/username/Desktop/adt-bundle-linux-x86_64-20131030/eclipse/eclipse
+Exec=/home/vassili/eclipse/java-2025-09/eclipse/eclipse
+Terminal=false
+Categories=DEVELOPMENT;JAVA;

@@ -2,7 +2,9 @@
 
 This document describes the installation of node *nabu*.
 
-It is aimed at becoming my main driver, using Arch.
+It is my main driver, using Arch.
+
+Current problems/bugs are described [here](problems.md).
 
 ## Context
 
@@ -464,21 +466,47 @@ Install the package:
 
 The details of the configuration are [here](ansible.md).
 
-
 ## Editors and IDE
 
-* emacs (package `emacs-weyland`)
+- emacs (package `emacs-weyland`)
+- Visual Studio Code (package `visual-studio-code` in AUR)
+- Eclipse (manual install for local user from Eclipse website)
+- Intellij IDEA (package `intellij-idea-community-edition`)
+
+### Visual studio code configuration
+
+### Eclipse configuration
+
+Eclipse is in `~/eclipse/java-2025-09`.
+As the project can be accessed by various IDEs, we store them in `~/git` and not in Eclipse workspace.
+
+- add lombok-1.18.42.jar to eclipse directory and add `-javaagent` parameter to `eclipse.ini`
+- in menu `windows/preferences/XML', enable option *Download external resources like referenced DTD, XSD*
+- create a [eclipse.desktop](config/eclipse/eclipse.desktop) file and copy it to `/usr/share/applications`
+- add plugins from market place:
+  - Markdown Text Editor 1.2.0
+
+
+### Intellij IDEA configuration
+
+
 
 ## File managers
 
 * thunar (packages `thunar` and `thunar-archive-plugin`)
 
+## Multimedia
+
+- vlc (packages `vlc` and `vlc-plugins-all`)
+
 ## Miscellaneous
 
-- tree (packge `tree`)/ a file tree display tool
+- tree (packge `tree`): a file tree display tool
 - fastfetch (package `fastfetch`): to display the environmant
 - yay (package `yay`): to access AUR
 - dos2unix (package `dos2unix`): to convert dos/windows text files into linux format
 - htop (package `htop`): extension of top
 - gnupg (package `gnupg`): to check signatures
 - yazi 5package `yazi`): a terminal based file manager
+- tmux (package `tmux`): terminal multiplexer
+- chromium (package `chromium`): web browser
