@@ -32,6 +32,18 @@ Add a key binding to go to fullscreen:
 
     bind = $mainMod, F, fullscreen
 
+As I'm using an rather nonstandard keyboard, I had to remap the binding
+of the workspace functions, using explicit codes, e.g.
+
+    bind = $mainMod, code:10, workspace, 1
+
+or
+
+    bind = $mainMod SHIFT, code:10, moveworkspace, 1
+
+Note: one can use the program `wev` to read the key code from weyland events.
+
+
 ### Add an application launcher
 
 We will use [rofi](https://github.com/davatorium/rofi).:
@@ -50,11 +62,20 @@ We first install [waybar](https://github.com/Alexays/waybar):
 
     sudo pacman -S waybar
 
-The configuration is : TBC
+The configuration is [config.jsonc](config/waybar/config.jsonc).
 
 We launch it at startup by adding in hyprland.conf:
 
     exec-once waybar
+
+To restart the waybar after modifying the configuration/
+
+    pkill waybar
+    hyprctl dispatch exec waybar
+
+To be able to use the `keyboard-state` module, one need to be in the input group:
+
+    sudo usermod -a -G input vassili
 
 ### Add a wallpaper tool
 
