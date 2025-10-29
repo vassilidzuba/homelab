@@ -61,6 +61,11 @@ Set the timezone:
     ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
     hwclock --systohc
 
+Run the ntp client:
+
+    pacman -S chrony
+    systemctl enable --now chronyd
+
 install nano
 
     pacman -S nano
@@ -163,6 +168,14 @@ We install zsh:
     chsh -s /usr/bin/zsh
 
 The file `.zshrc` is available [here](config/zshrc).
+
+### .zshrc customization
+
+The configuration uses the emacs keybinding, but we want to add bindins for the keys *beginning* and *end* to go to the beginning
+and end of the line. This is done with:
+
+    bindkey "^[[H" beginning-of-line
+    bindkey "^[[F" end-of-line
 
 ## Utilities
 
@@ -483,6 +496,7 @@ As the project can be accessed by various IDEs, we store them in `~/git` and not
 - add lombok-1.18.42.jar to eclipse directory and add `-javaagent` parameter to `eclipse.ini`
 - in menu `windows/preferences/XML', enable option *Download external resources like referenced DTD, XSD*
 - create a [eclipse.desktop](config/eclipse/eclipse.desktop) file and copy it to `/usr/share/applications`
+- add the support of git to `m2e` (in maven import dialog)
 - add plugins from market place:
   - Markdown Text Editor 1.2.0
 
@@ -497,7 +511,9 @@ As the project can be accessed by various IDEs, we store them in `~/git` and not
 
 ## Multimedia
 
-- vlc (packages `vlc` and `vlc-plugins-all`)
+- vlc (packages `vlc` and `vlc-plugins-all`): video player
+- mpv (package `mpv`): video player
+- haruna (paclage `haruna`): vide player, front-end of mpv
 
 ## Miscellaneous
 
@@ -510,3 +526,4 @@ As the project can be accessed by various IDEs, we store them in `~/git` and not
 - yazi 5package `yazi`): a terminal based file manager
 - tmux (package `tmux`): terminal multiplexer
 - chromium (package `chromium`): web browser
+- wev (manual install from [https://github.com/jwrdegoede/wev](https://github.com/jwrdegoede/wev)): weyland event viewer

@@ -1,0 +1,72 @@
+- name: install nginx
+  hosts: adad1
+  remote_user: vassili
+  become: yes
+  tasks:
+  - name: install
+    apt:
+      name: nginx
+      state: present
+  - name: remove obsolete data
+    file:
+      path: /var/www/html/index.nginx-debian.html
+      state: absent
+  - name: copy data
+    copy:
+      src: data/javadoc/html/
+      dest: /var/www/html
+      backup: no
+      mode: 0644
+      owner: root
+      group: root
+  - name: copy CA certificate
+    copy:
+      src: certificate/Manul-RootCA.crt
+      dest: /usr/local/share/ca-certificates/Manul-RootCA.crt
+      backup: no
+      mode: 0600
+      owner: root
+      group: root
+    register: cacert
+  - name: add certificate to the certificate store
+    shell:
+      cmd: update-ca-certificates
+    when: cacert.changed
+  - name: create directory for webserver certificate
+    file:
+      path: /root/nginx
+      state: directory
+      owner: root
+      mode: '0700'
+  - name: copy webserver certificate (.crt)
+    copy:
+      src: certificate/adad1.crt
+      dest: /root/nginx/adad1.crt
+      backup: no
+      mode: 0600
+      owner: root
+      group: root
+  - name: copy webserver certificate (.key)
+    copy:
+      src: certificate/adad1.key
+      dest: /root/nginx/adad1.key
+      backup: no
+      mode: 0600
+      owner: root
+      group: root
+  - name: copy server config
+    copy:
+      src: config/nginx/default
+      dest: /etc/nginx/sites-available/default
+      backup: no
+      mode: 0600
+      owner: root
+      group: root
+    register: nginxconf
+  - name: restart nginx
+    systemd_service:
+      name: nginx
+      state: restarted
+    when: nginxconf.changed
+
+    
