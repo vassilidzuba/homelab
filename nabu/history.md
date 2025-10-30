@@ -172,10 +172,11 @@ The file `.zshrc` is available [here](config/zshrc).
 ### .zshrc customization
 
 The configuration uses the emacs keybinding, but we want to add bindins for the keys *beginning* and *end* to go to the beginning
-and end of the line. This is done with:
+and end of the line, as well as for *Suppr*. This is done with:
 
     bindkey "^[[H" beginning-of-line
     bindkey "^[[F" end-of-line
+    bindkey "^[[3~" delete-char-or-list
 
 ## Utilities
 
@@ -388,6 +389,16 @@ To compile a program/
     cd hellogo
     go build
     ./hello
+
+## Lua
+
+To install Lua:
+
+    pacman -S lua
+
+and/or
+
+    pacman -S luajit
    
 ## Zig
 
@@ -479,12 +490,14 @@ Install the package:
 
 The details of the configuration are [here](ansible.md).
 
-## Editors and IDE
+## Editors and IDEs
 
-- emacs (package `emacs-weyland`)
-- Visual Studio Code (package `visual-studio-code` in AUR)
 - Eclipse (manual install for local user from Eclipse website)
+- Emacs (package `emacs-weyland`)
 - Intellij IDEA (package `intellij-idea-community-edition`)
+- Neovim (package `neovim`)
+- Visual Studio Code (package `visual-studio-code` in AUR)
+- zed (package `zed`)
 
 ### Visual studio code configuration
 
@@ -503,6 +516,15 @@ As the project can be accessed by various IDEs, we store them in `~/git` and not
 
 ### Intellij IDEA configuration
 
+### Neovim configuration
+
+To develop in zig:
+
+    pacman -S zls
+
+### Visual studio configuration
+
+### Zed configuration
 
 
 ## File managers
@@ -511,19 +533,20 @@ As the project can be accessed by various IDEs, we store them in `~/git` and not
 
 ## Multimedia
 
-- vlc (packages `vlc` and `vlc-plugins-all`): video player
+- haruna (paclage `haruna`): video player, front-end of mpv
 - mpv (package `mpv`): video player
-- haruna (paclage `haruna`): vide player, front-end of mpv
+- vlc (packages `vlc` and `vlc-plugins-all`): video player
 
 ## Miscellaneous
 
-- tree (packge `tree`): a file tree display tool
-- fastfetch (package `fastfetch`): to display the environmant
-- yay (package `yay`): to access AUR
-- dos2unix (package `dos2unix`): to convert dos/windows text files into linux format
-- htop (package `htop`): extension of top
-- gnupg (package `gnupg`): to check signatures
-- yazi 5package `yazi`): a terminal based file manager
-- tmux (package `tmux`): terminal multiplexer
 - chromium (package `chromium`): web browser
+- dos2unix (package `dos2unix`): to convert dos/windows text files into linux format
+- fastfetch (package `fastfetch`): to display the environmant
+- gnupg (package `gnupg`): to check signatures
+- htop (package `htop`): extension of top
+- tmux (package `tmux`): terminal multiplexer
+- tree (packge `tree`): a file tree display tool
 - wev (manual install from [https://github.com/jwrdegoede/wev](https://github.com/jwrdegoede/wev)): weyland event viewer
+- yay (package `yay`): to access AUR
+- yazi 5package `yazi`): a terminal based file manager
+- zathura (packaghes): pdf reader

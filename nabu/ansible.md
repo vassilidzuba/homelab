@@ -145,7 +145,6 @@ The steps of the playbook are /
 - copy the CA certificate and execute `update-ca-certificates`
 - copy the webserver certificate
 - copy the server config and restart nginx
-
 ### Copying data
 
 The playbook copies data from `data/javadoc/html` to `var/www/html`.

@@ -12,6 +12,10 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+bindkey "^[[F" end-of-line
+bindkey "^[[H" beginning-of-line
+bindkey "^[[3~" delete-char-or-list
+
 autoload -Uz promptinit
 promptinit
 prompt redhat
