@@ -544,6 +544,7 @@ To develop in zig:
 - fastfetch (package `fastfetch`): to display the environmant
 - gnupg (package `gnupg`): to check signatures
 - htop (package `htop`): extension of top
+- pandoc (package `pandoc`): universal document converter
 - tmux (package `tmux`): terminal multiplexer
 - tree (packge `tree`): a file tree display tool
 - wev (manual install from [https://github.com/jwrdegoede/wev](https://github.com/jwrdegoede/wev)): weyland event viewer
