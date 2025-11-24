@@ -56,6 +56,9 @@ The binding will be:
 
 The rofi configuration is [config.rasi](config/rofi/config.rasi).
 
+Note that rofi presents first the most used applications. The usage counters 
+of the applications are kept in `~/.cache/rofi3.druncache`.
+
 ### Add the waybar
 
 We first install [waybar](https://github.com/Alexays/waybar):
@@ -82,5 +85,3 @@ To be able to use the `keyboard-state` module, one need to be in the input group
 We install the tool:
 
     sudo pacman -S hyprpaper
-
-
