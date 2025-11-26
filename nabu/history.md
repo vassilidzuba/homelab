@@ -41,7 +41,7 @@ the disk is already partitioned, we only need to format and mount the root parti
     mount /dev/sda4 /mnt
     mount --mkdir /dev/sda1 /mnt/boot
     swapon /dev/sda2
-   
+
 To install the base packages, we use the command:
 
     pacstrap -K /mnt base linux linux-firmware amd-ucode
@@ -190,7 +190,7 @@ One can obtain the list of devices by
 
     sudo smartctl --scan
 
-and all the info about a given device (here /dev/sda) by 
+and all the info about a given device (here `/dev/sda`) by
 
     sudo smartctl --all /dev/sda
 
@@ -198,13 +198,13 @@ and all the info about a given device (here /dev/sda) by
 
 Packages:
 
-* nvidia driver: nvidia-open
-* righs management: polkit
-* terminal: kitty
-* browser: firefox (with pipewire-jack)
-* compositor: hyprland
+- nvidia driver: nvidia-open
+- righs management: polkit
+- terminal: kitty
+- browser: firefox (with pipewire-jack)
+- compositor: hyprland
 
-To launch, `hyprland`
+To launch, type `hyprland`.
 
 The documentation of the configuration of hyprland is in [hyprland.md](hyprland.md).
 
@@ -470,9 +470,9 @@ We start the libvirt daemon:
 
 We need to start automatically the default network:
 
-   sudo virsh net-autostart --network default
+    sudo virsh net-autostart --network default
 
-We modify the file `/etc/nsswitch.conf` to allow to access the geust by its host name:
+We modify the file `/etc/nsswitch.conf` to allow to access the guest by its host name:
 
     hosts: mymachines resolve [!UNAVAIL=return] files libvirt libvirt_guest myhostname dns
 
@@ -541,6 +541,7 @@ To develop in zig:
 
 - chromium (package `chromium`): web browser
 - dos2unix (package `dos2unix`): to convert dos/windows text files into linux format
+- factorip (commercial game; manual installation)
 - fastfetch (package `fastfetch`): to display the environmant
 - gnupg (package `gnupg`): to check signatures
 - htop (package `htop`): extension of top
