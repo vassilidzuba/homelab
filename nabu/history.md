@@ -552,3 +552,7 @@ To develop in zig:
 - yay (package `yay`): to access AUR
 - yazi 5package `yazi`): a terminal based file manager
 - zathura (packaghes): pdf reader
+
+## Steam
+
+- enable multilib (see [https://wiki.archlinux.org/title/Official_repositories#multilib](https://wiki.archlinux.org/title/Official_repositories#multilib)).
