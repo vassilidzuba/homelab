@@ -178,6 +178,23 @@ and end of the line, as well as for *Suppr*. This is done with:
     bindkey "^[[F" end-of-line
     bindkey "^[[3~" delete-char-or-list
 
+
+## System maintenance
+
+### Pacman cache
+
+One need the package `pacman-contrib`:
+
+    sudo pacman -S pacman-contrib
+
+To clean the pacman cache:
+
+    paccache -r
+
+To run it weekly automatically:
+
+
+
 ## Utilities
 
 ### Smartctl

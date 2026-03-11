@@ -21,6 +21,7 @@ Of course, there is no guarantee that what is described here will work in other 
 * [assur](assur/README.md), a small NAS
 * [damu](damu/README.md), a obsolete mini-pc, used to play with proxmon and ansible
 * [shamash](shamash/README.md), a VM running nixos
+* [ptah](ptah/README.md), a VPS located in the USA
 
 There are also some docs not linkled to specific machines:
 
