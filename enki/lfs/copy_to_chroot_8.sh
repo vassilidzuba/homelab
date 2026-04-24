@@ -1,0 +1,92 @@
+#!/bin/bash
+
+LFS=/mnt/lfs
+
+if [ ! -d $LFS/lfsscripts ]; then
+    mkdir -v $LFS/lfsscripts
+fi
+
+
+cp ./chap08/man-pages.sh $LFS/lfsscripts
+cp ./chap08/iana-etc.sh $LFS/lfsscripts
+cp ./chap08/glibc.sh $LFS/lfsscripts
+cp ./chap08/zlib.sh $LFS/lfsscripts
+cp ./chap08/bzip2.sh $LFS/lfsscripts
+cp ./chap08/xz.sh $LFS/lfsscripts
+cp ./chap08/lz4.sh $LFS/lfsscripts
+cp ./chap08/zstd.sh $LFS/lfsscripts
+cp ./chap08/file.sh $LFS/lfsscripts
+cp ./chap08/readline.sh $LFS/lfsscripts
+cp ./chap08/pcre2.sh $LFS/lfsscripts
+cp ./chap08/m4.sh $LFS/lfsscripts
+cp ./chap08/bc.sh $LFS/lfsscripts
+cp ./chap08/flex.sh $LFS/lfsscripts
+cp ./chap08/tcl.sh $LFS/lfsscripts
+cp ./chap08/expect.sh $LFS/lfsscripts
+cp ./chap08/dejagnu.sh $LFS/lfsscripts
+cp ./chap08/pkgconf.sh $LFS/lfsscripts
+cp ./chap08/binutils.sh $LFS/lfsscripts
+cp ./chap08/gmp.sh $LFS/lfsscripts
+cp ./chap08/mpfr.sh $LFS/lfsscripts
+cp ./chap08/mpc.sh $LFS/lfsscripts
+cp ./chap08/attr.sh $LFS/lfsscripts
+cp ./chap08/acl.sh $LFS/lfsscripts
+cp ./chap08/libcap.sh $LFS/lfsscripts
+cp ./chap08/libxcrypt.sh $LFS/lfsscripts
+cp ./chap08/shadow.sh $LFS/lfsscripts
+cp ./chap08/gcc.sh $LFS/lfsscripts
+cp ./chap08/ncurses.sh $LFS/lfsscripts
+cp ./chap08/sed.sh $LFS/lfsscripts
+cp ./chap08/psmisc.sh $LFS/lfsscripts
+cp ./chap08/gettext.sh $LFS/lfsscripts
+cp ./chap08/bison.sh $LFS/lfsscripts
+cp ./chap08/grep.sh $LFS/lfsscripts
+cp ./chap08/bash.sh $LFS/lfsscripts
+cp ./chap08/libtool.sh $LFS/lfsscripts
+cp ./chap08/gdbm.sh $LFS/lfsscripts
+cp ./chap08/gperf.sh $LFS/lfsscripts
+cp ./chap08/expat.sh $LFS/lfsscripts
+cp ./chap08/inetutils.sh $LFS/lfsscripts
+cp ./chap08/less.sh $LFS/lfsscripts
+cp ./chap08/perl.sh $LFS/lfsscripts
+cp ./chap08/xml-parser.sh $LFS/lfsscripts
+cp ./chap08/intltool.sh $LFS/lfsscripts
+cp ./chap08/autoconf.sh $LFS/lfsscripts
+cp ./chap08/automake.sh $LFS/lfsscripts
+cp ./chap08/openssl.sh $LFS/lfsscripts
+cp ./chap08/libelf.sh $LFS/lfsscripts
+cp ./chap08/libffi.sh $LFS/lfsscripts
+cp ./chap08/sqlite.sh $LFS/lfsscripts
+cp ./chap08/python.sh $LFS/lfsscripts
+cp ./chap08/flit-core.sh $LFS/lfsscripts
+cp ./chap08/packaging.sh $LFS/lfsscripts
+cp ./chap08/wheel.sh $LFS/lfsscripts
+cp ./chap08/setuptools.sh $LFS/lfsscripts
+cp ./chap08/ninja.sh $LFS/lfsscripts
+cp ./chap08/meson.sh $LFS/lfsscripts
+cp ./chap08/kmod.sh $LFS/lfsscripts
+cp ./chap08/coreutils.sh $LFS/lfsscripts
+cp ./chap08/diffutils.sh $LFS/lfsscripts
+cp ./chap08/gawk.sh $LFS/lfsscripts
+cp ./chap08/findutils.sh $LFS/lfsscripts
+cp ./chap08/groff.sh $LFS/lfsscripts
+cp ./chap08/grub.sh $LFS/lfsscripts
+cp ./chap08/gzip.sh $LFS/lfsscripts
+cp ./chap08/iproute2.sh $LFS/lfsscripts
+cp ./chap08/kbd.sh $LFS/lfsscripts
+cp ./chap08/libpipeline.sh $LFS/lfsscripts
+cp ./chap08/make.sh $LFS/lfsscripts
+cp ./chap08/patch.sh $LFS/lfsscripts
+cp ./chap08/tar.sh $LFS/lfsscripts
+cp ./chap08/texinfo.sh $LFS/lfsscripts
+cp ./chap08/vim.sh $LFS/lfsscripts
+cp ./chap08/markupsafe.sh $LFS/lfsscripts
+cp ./chap08/jinja2.sh $LFS/lfsscripts
+cp ./chap08/systemd.sh $LFS/lfsscripts
+cp ./chap08/dbus.sh $LFS/lfsscripts
+cp ./chap08/man-db.sh $LFS/lfsscripts
+cp ./chap08/procps.sh $LFS/lfsscripts
+cp ./chap08/util-linux.sh $LFS/lfsscripts
+cp ./chap08/e2fsprogs.sh $LFS/lfsscripts
+cp ./chap08/stripping.sh $LFS/lfsscripts
+cp ./chap08/cleanup.sh $LFS/lfsscripts

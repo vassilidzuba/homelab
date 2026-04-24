@@ -1,0 +1,38 @@
+#/bin/bash
+
+echo '****' Compiling file
+
+PACKAGE=file-5.46
+
+if [ -f /mnt/lfs/usr/bin/file ]; then
+  echo "Package $PACKAGE already built"
+  exit 0
+fi
+
+cd $LFS/sources
+
+if [ ! -d $PACKAGE ]; then
+  tar xvzf $PACKAGE.tar.gz
+fi
+
+cd $PACKAGE
+
+mkdir build
+pushd build
+  ../configure --disable-bzlib      \
+               --disable-libseccomp \
+               --disable-xzlib      \
+               --disable-zlib
+  make
+popd
+
+./configure --prefix=/usr --host=$LFS_TGT --build=$(./config.guess)
+
+make FILE_COMPILE=$(pwd)/build/src/file
+
+make DESTDIR=$LFS install
+
+rm -v $LFS/usr/lib/libmagic.la
+
+cd $LFS/sources
+rm -rf $LFS/sources/$PACKAGE

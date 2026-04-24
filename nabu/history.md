@@ -543,16 +543,20 @@ To develop in zig:
 
 ### Zed configuration
 
-
 ## File managers
 
 * thunar (packages `thunar` and `thunar-archive-plugin`)
+
+## Office aplication
+
+* Libre Office (package `libreoffice`): office suite
 
 ## Multimedia
 
 - haruna (paclage `haruna`): video player, front-end of mpv
 - mpv (package `mpv`): video player
 - vlc (packages `vlc` and `vlc-plugins-all`): video player
+- ImageMagick (package `imagemagick`): image conversion utility
 
 ## Miscellaneous
 
@@ -563,6 +567,7 @@ To develop in zig:
 - gnupg (package `gnupg`): to check signatures
 - htop (package `htop`): extension of top
 - pandoc (package `pandoc`): universal document converter
+- qrencode (package 'qrencode'): QR-code encoder
 - tmux (package `tmux`): terminal multiplexer
 - tree (packge `tree`): a file tree display tool
 - wev (manual install from [https://github.com/jwrdegoede/wev](https://github.com/jwrdegoede/wev)): weyland event viewer
