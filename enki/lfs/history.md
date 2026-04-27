@@ -196,3 +196,79 @@ to strip debuging symbols:
 to perform a final cleanup (warning, that will remove the user `tester`):
 
     /lfsscripts/cleanup.sh
+
+# System configuration
+
+The configurations are stored in `chap09` in the repo, and copied to 
+the LFS environment by the script `copy_to_chroot_9.sh`, that must be run as `root`.
+
+We use `/etc/resolv.conf`, so we need to disable systemd-resolved:
+
+    systemctl disable systemd-resolved
+
+We need to define some locale:
+
+  localedef -i C -f UTF-8 C.UTF-8
+  localedef -i fr_FR -f UTF-8 fr_FR.UTF-8
+  localedef -i en_US -f UTF-8 en_US.UTF-8
+
+We will also copy fstab (that will need to be changed on another computer)
+while it belongs to chapter 10 of the book.
+
+As i'm using kitty in the host computer, we will also need to copy the terminfo
+file `xterm-kitty` to the LFS envioronment.
+
+# Making the LFS system bootable
+
+## Building of the kernel
+
+We will use the LTS kernel version `6.18.24`, while the book uses version `6.18.10`.
+
+The commands are, while in the kernel source directory,
+
+    make mrproper
+    make defconfig
+    make menuconfig
+    make
+    make modules_install
+    
+    cp -r Documentation -T /usr/share/doc/linux-6.18.10
+    chown -R 0:0 .
+    
+    install -v -m755 -d /etc/modprobe.d
+    cat > /etc/modprobe.d/usb.conf << "EOF"
+    # Begin /etc/modprobe.d/usb.conf
+    
+    install ohci_hcd /sbin/modprobe ehci_hcd ; /sbin/modprobe -i ohci_hcd ; true
+    install uhci_hcd /sbin/modprobe ehci_hcd ; /sbin/modprobe -i uhci_hcd ; true
+    
+    # End /etc/modprobe.d/usb.conf
+    EOF
+
+## Setup the boot process
+
+In my case, I simply add the new installation to the existing grub.
+
+First we copy the kernel to the boot partition (from the host):
+
+   #if not already mounted
+   mount /boot
+   
+   cd /mnt/lfs/sources/linux-6.18.10
+   cp -iv  arch/x86/boot/bzImage /boot/vmlinuz-6.18.10-lfs-13.0-systemd
+   cp -iv System.map /boot/System.map-6.18.10
+   cp -iv .config /boot/config-6.18.10
+   
+We add a menuentry in `/etc/grub.d.40_custom`:
+
+    menuentry "LFS, Linux 6.18.10-lfs-13.0-systemd" {
+        load_video
+        set gfxpayload=keep
+        insmod gzio
+        insmod part_gpt
+        insmod ext2
+        insmod fat
+        set root=(hd0,1)
+        echo 'Chargement de Linux From Scratch...'
+        linux   /vmlinuz-6.18.10-lfs-13.0-systemd root=/dev/sda3 rw debug
+    }
