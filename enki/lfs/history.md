@@ -272,3 +272,31 @@ We add a menuentry in `/etc/grub.d.40_custom`:
         echo 'Chargement de Linux From Scratch...'
         linux   /vmlinuz-6.18.10-lfs-13.0-systemd root=/dev/sda3 rw debug
     }
+
+We finally make the grub config:
+
+    grub_config -o /boot/grub/grub.cfg
+
+# The end
+
+We can now follow the book section 11.1, and reboot to our new LFS distro.
+
+
+# QUEMU
+
+To build BLFS, it would be easier to run both Arch and LFS simultaneously, while LFS runs in a virtual machine.
+
+For that, one can, from the host:
+
+* unmount /mnt/lfs
+* run LFS under QEMU
+
+To do so, enter the following command:
+
+    sudo qemu-system-x86_64 -kernel /boot/vmlinuz-6.18.10-lfs-13.0-systemd  -drive file=/dev/sda,format=raw -append "root=/dev/sda3 console=ttyS0"-nographic
+
+This commands requires `sudo` to have access to `/dev/sda`.
+
+If a read-only access is sufficient (which is recommanded by QEMU documentation, but not very usefull for out aim), add parameter `-snapshot`.
+
+To quit the virtual machine, perform a shutdown or log off and type `Ctrl-a x`
