@@ -279,12 +279,15 @@ We finally make the grub config:
 
 # The end
 
-We can now follow the book section 11.1, and reboot to our new LFS distro.
+We can now follow the book section 11.1, and reboot to our new LFS installation.
 
 
 # QUEMU
 
 To build BLFS, it would be easier to run both Arch and LFS simultaneously, while LFS runs in a virtual machine.
+
+For that, we must avoid mounting the same volume in both Arch and LFS,
+so we need in LFS to modify /etc/fstab to mount only the LFS partition (`/dev/sd3` here).
 
 For that, one can, from the host:
 
@@ -297,6 +300,6 @@ To do so, enter the following command:
 
 This commands requires `sudo` to have access to `/dev/sda`.
 
-If a read-only access is sufficient (which is recommanded by QEMU documentation, but not very usefull for out aim), add parameter `-snapshot`.
+If a read-only access is sufficient (which is recommended by QEMU documentation, but not very usefull for out aim), add parameter `-snapshot`.
 
 To quit the virtual machine, perform a shutdown or log off and type `Ctrl-a x`
