@@ -43,6 +43,14 @@ In the guest, one mount the shared directory:
 
     mount -t virtiofs myfs /mnt/vm-share
 
-## Add user
+## Running scripts
 
-shutdown -h nb
+The scripts are in the directory `./scripts`. To use them one need to:
+
+* on the host, copy then to the shared volume using `./copy-to-share.sh`
+* on the guest, run them as `/mnt/vm-share/...` 
+* on the guest export the variable `SHAREDDIR` with the value `/mnt/vm-share`
+
+## Add an user
+
+One can add an user by running the script [01-create-user.sh](./scripts/01-create-user.sh)
