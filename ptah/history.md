@@ -91,7 +91,7 @@ Ptah is running debian 13
 
 - update and upgrade system
 
-    sudo apu update
+    sudo apt update
     sudo apt upgrade
 
 - update certbot
