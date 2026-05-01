@@ -59,7 +59,7 @@ the build, so we need to create that directory.
 ## Downloading packages
 
 As the guest (LFS) isn't able to dowload packages yet, we download them 
-on the host with the script [download.sh]()./download.sh).
+on the host with the script [download.sh](./download.sh).
 
 ## Add an user
 
@@ -88,25 +88,25 @@ the root password:
 As it's fun to have *fastfetch* (in extra), we fist need to build
 some packages befotre being able to build *fastfetch*:
 
-* [scripts/003-cmake.sh](003-cmake.sh)
+* [003-cmake.sh](scripts/003-cmake.sh)
 
 We need an editor (for those that don't like `vim`):
 
-* [scripts/004-nano.sh](004-nano.sh)
+* [004-nano.sh](scripts/004-nano.sh)
 
 We need program to download files from the internet:
 
-* [scripts/005-libunistring.sh](005-libunistring.sh)
-* [scripts/006-libidn2.sh](006-libidn2.sh)
-* [scripts/007-libpsl.sh](007-libpsl.sh)
-* [scripts/008-libtasn1.sh](008-libtasn1.sh)
-* [scripts/009-p11-kit.sh](009-p11-kit.sh)
-* [scripts/010-nspr.sh](010-nspr.sh)
-* [scripts/011-nss.sh](nss.sh)
-* [scripts/012-make-ca.sh](make-ca.sh)
-* [scripts/013-nettle.sh](nettle.sh)
-* [scripts/014-gnutls.sh](gnutls.sh)
-* [scripts/015-wget.sh](wget.sh)
-* [scripts/016-curl.sh](curl.sh)
+* [005-libunistring.sh](scripts/005-libunistring.sh)
+* [006-libidn2.sh](scripts/006-libidn2.sh)
+* [007-libpsl.sh](scripts/007-libpsl.sh)
+* [008-libtasn1.sh](scripts/008-libtasn1.sh)
+* [009-p11-kit.sh](scripts/009-p11-kit.sh)
+* [010-nspr.sh](scripts/010-nspr.sh)
+* [011-nss.sh](scripts/011-nss.sh)
+* [012-make-ca.sh](scripts/012-make-ca.sh)
+* [013-nettle.sh](scripts/013-nettle.sh)
+* [014-gnutls.sh](scripts/014-gnutls.sh)
+* [015-wget.sh](scripts/015-wget.sh)
+* [016-curl.sh](scripts/016-curl.sh)
 
 note: many wget tests failed, for unknown reason. The program seems to work however.
