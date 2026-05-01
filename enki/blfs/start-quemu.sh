@@ -15,4 +15,6 @@ sudo qemu-system-x86_64 \
     -object memory-backend-memfd,id=mem,size=4G,share=on \
     -numa node,memdev=mem \
     -chardev socket,id=char0,path=/tmp/vm-share.sock \
+    -cpu host \
+    -enable-kvm \
     -device vhost-user-fs-pci,chardev=char0,tag=myfs
