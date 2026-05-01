@@ -47,19 +47,33 @@ In the guest, one mount the shared directory:
 
 ## Running scripts
 
-The scripts are in the directory `./scripts`. To use them one need to:
+The scripts are in the directory `./scripts`. To use them one need to firstly:
 
-* on the host, copy then to the shared volume using `./copy-to-share.sh`
+* on the host, copy the to the shared volume using `./copy-to-share.sh`
 * on the guest, run them as `/mnt/vm-share/...` 
-* on the guest export the variable `SHAREDDIR` with the value `/mnt/vm-share`
 
-The build scripts use files in `/lfsflags/blfs` to avoid repeating 
-the build, so we need to create that directory.
+When the dowload programs ara available (`wget` ou `curl`) onre can change the 
+workflox/
+
+* on the host, copy the scripts the shared volume using `./copy-to-share.sh`
+* on the guest, run them as `/mnt/vm-share/...` 
+
+The scripts use two utility scripts:
+
+* [_params.sh](./scripts/_params.sh)
+* [_utilities.sh](./scripts/_utilities.sh)
+
+The script `_params.sh` contains the definition of the essential directories:
+
+* SHAREDDIR : dirtectory shared betwwen the hosty andf the guest, seen from the guest
+* SRCDIR: directory of the sources, where the build is performed
+* FLAGDIR: directory where are stored the flags indicating a build has been perfoemd
+
 
 ## Downloading packages
 
-As the guest (LFS) isn't able to dowload packages yet, we download them 
-on the host with the script [download.sh](./download.sh).
+At the beginning, the guest (LFS) isn't able to dowload packages yet, 
+so we download them on the host with the script [download.sh](./download.sh).
 
 ## Add an user
 
