@@ -6,8 +6,11 @@ if [ -d /mnt/lfs/etc ]; then
     echo /mnt/lfs unmounted
 fi
 
+#KERNEL=vmlinuz-6.18.10-lfs-13.0-systemd
+KERNEL=vmlinuz-7.0.3-lfs-13.0-systemd
+
 sudo qemu-system-x86_64 \
-    -kernel /boot/vmlinuz-6.18.10-lfs-13.0-systemd \
+    -kernel /boot/$KERNEL \
     -drive file=/dev/sda,format=raw \
     -append "root=/dev/sda3 console=ttyS0" \
     -nographic \

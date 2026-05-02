@@ -1,4 +1,4 @@
-# Enki installation - LFS
+cd git  # Enki installation - LFS
 
 This installation is based on version 13 of the LFS book.
 
@@ -224,6 +224,8 @@ file `xterm-kitty` to the LFS envioronment.
 
 We will use the LTS kernel version `6.18.24`, while the book uses version `6.18.10`.
 
+As further down we will need to have virtiofs, one need to add FUSE and VIRTIO_FS as mosuldes in the configuration.
+
 The commands are, while in the kernel source directory,
 
     make mrproper
@@ -251,13 +253,14 @@ In my case, I simply add the new installation to the existing grub.
 
 First we copy the kernel to the boot partition (from the host):
 
-   #if not already mounted
-   mount /boot
-   
-   cd /mnt/lfs/sources/linux-6.18.10
-   cp -iv  arch/x86/boot/bzImage /boot/vmlinuz-6.18.10-lfs-13.0-systemd
-   cp -iv System.map /boot/System.map-6.18.10
-   cp -iv .config /boot/config-6.18.10
+
+    #if not already mounted
+    mount /boot 
+    
+    cd /mnt/lfs/sources/linux-6.18.10
+    cp -iv  arch/x86/boot/bzImage /boot/vmlinuz-6.18.10-lfs-13.0-systemd
+    cp -iv System.map /boot/System.map-6.18.10
+    cp -iv .config /boot/config-6.18.10
    
 We add a menuentry in `/etc/grub.d.40_custom`:
 
@@ -303,3 +306,36 @@ This commands requires `sudo` to have access to `/dev/sda`.
 If a read-only access is sufficient (which is recommended by QEMU documentation, but not very usefull for out aim), add parameter `-snapshot`.
 
 To quit the virtual machine, perform a shutdown or log off and type `Ctrl-a x`
+
+# New kernels
+
+To create the trust gpg database:
+
+    gpg2 --locate-keys torvalds@kernel.org gregkh@kernel.org
+
+To install a new kernel (we will assume version 7.0.3):
+
+We will do the following on the host
+
+* download the archive from [https://kernel.org/](hernel.org).
+* download the pgp signature
+* uncompress the kernel archive: `unxz linux-...`
+* check the key: `pgp2 --verify linux-...sign linux-...tar`
+* copy the kernel archive to the LFS installation in `\sources`
+
+when in LFS:
+
+- extract the archive
+- cd into the directory
+- execute `make mrproper`
+- copy the last .config to the current directory
+- execute:
+
+
+    make oldconfig`
+    make
+    make modules_install
+    cp -r Documentation -T /usr/share/doc/linux-7.0.3
+    chown -R 0:0 .
+
+and we continue setting up the boot process as previously described.

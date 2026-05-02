@@ -60,7 +60,8 @@ MD5=c9642ff2241aa38c9e81589641652a50
 download
 
 SRC=nss-standalone-1.patch
-URL=https://www.linuxfromscratch.org/patches/blfs/13.0/nss-standalone-1.patch
+URL=
+
 MD5=
 download
 
