@@ -325,17 +325,21 @@ We will do the following on the host
 
 when in LFS:
 
-- extract the archive
-- cd into the directory
-- execute `make mrproper`
-- copy the last .config to the current directory
-- execute:
+* extract the archive
+* cd into the directory
+* execute `make mrproper`
+* copy the last .config to the current directory
 
+After that, we execute:
 
-    make oldconfig`
+    make oldconfig
     make
     make modules_install
     cp -r Documentation -T /usr/share/doc/linux-7.0.3
     chown -R 0:0 .
+    
+    cp -iv  arch/x86/boot/bzImage /boot/vmlinuz-7.0.3-lfs-13.0-systemd
+    cp -iv System.map /boot/System.map-7.0.3
+    cp -iv .config /boot/config-7.0.3
 
 and we continue setting up the boot process as previously described.
