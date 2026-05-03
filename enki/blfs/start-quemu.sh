@@ -20,4 +20,6 @@ sudo qemu-system-x86_64 \
     -chardev socket,id=char0,path=/tmp/vm-share.sock \
     -cpu host \
     -enable-kvm \
-    -device vhost-user-fs-pci,chardev=char0,tag=myfs
+    -device vhost-user-fs-pci,chardev=char0,tag=myfs \
+    -device e1000,netdev=net0 \
+    -netdev user,id=net0,hostfwd=tcp::5555-:22

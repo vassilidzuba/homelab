@@ -222,9 +222,15 @@ file `xterm-kitty` to the LFS envioronment.
 
 ## Building of the kernel
 
-We will use the LTS kernel version `6.18.24`, while the book uses version `6.18.10`.
+We will use the LTS kernel version `7.0.3`, while the book uses version `6.18.10`.
 
-As further down we will need to have virtiofs, one need to add FUSE and VIRTIO_FS as mosuldes in the configuration.
+We may need to add some config options to the defauilt config:
+
+- FUSE and VIRTIO_FS to be able to share a directory when running under quemu
+- USER_NS to compile some packages
+- maybe some network driver if missing in the default config (IGB in my case)
+
+That will be done in `make menuconfig`.
 
 The commands are, while in the kernel source directory,
 
@@ -334,12 +340,12 @@ After that, we execute:
 
     make oldconfig
     make
-    make modules_install
-    cp -r Documentation -T /usr/share/doc/linux-7.0.3
-    chown -R 0:0 .
+    sudo make modules_install
+    sudo cp -r Documentation -T /usr/share/doc/linux-7.0.3
+    sudo chown -R 0:0 .
     
-    cp -iv  arch/x86/boot/bzImage /boot/vmlinuz-7.0.3-lfs-13.0-systemd
-    cp -iv System.map /boot/System.map-7.0.3
-    cp -iv .config /boot/config-7.0.3
+    sudo cp -iv  arch/x86/boot/bzImage /boot/vmlinuz-7.0.3-lfs-13.0-systemd
+    sudo cp -iv System.map /boot/System.map-7.0.3
+    sudo cp -iv .config /boot/config-7.0.3
 
 and we continue setting up the boot process as previously described.

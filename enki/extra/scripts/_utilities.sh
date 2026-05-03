@@ -30,6 +30,8 @@ check_archive () {
                     fi
                 fi
                 popd
+            elif [ "$GIT" != "" ]; then
+                echo "Downloading $URL"
             else
                 echo "not available in shared directory: $SOURCE"
                 exit 255

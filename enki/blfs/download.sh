@@ -61,7 +61,6 @@ download
 
 SRC=nss-standalone-1.patch
 URL=
-
 MD5=
 download
 
@@ -83,4 +82,34 @@ download
 SRC=wget-1.25.0.tar.gz
 URL=https://ftpmirror.gnu.org/wget/wget-1.25.0.tar.gz
 MD5=c70ba58b36f944e8ba1d655ace552881
+download
+
+SRC=blfs-systemd-units-20251204.tar.xz
+URL=https://www.linuxfromscratch.org/blfs/downloads/13.0-systemd/blfs-systemd-units-20251204.tar.xz
+MD5=
+download
+
+SRC=libpng-1.6.54-apng.patch.gz
+URL=https://downloads.sourceforge.net/sourceforge/libpng-apng/libpng-1.6.54-apng.patch.gz
+MD5=073fb9cc80b7bad022bdfef53ddea540
+download
+
+SRC=llvm-cmake-21.1.8.src.tar.xz
+URL=https://anduin.linuxfromscratch.org/BLFS/llvm/llvm-cmake-21.1.8.src.tar.xz
+MD5=fb75e927effbedba72de1f421154fd0c
+download
+
+SRC=llvm-third-party-21.1.8.src.tar.xz
+URL=https://anduin.linuxfromscratch.org/BLFS/llvm/llvm-third-party-21.1.8.src.tar.xz
+MD5=4cad220587e039a2ff9465766c018
+download
+
+SRC=clang-21.1.8.src.tar.xz
+URL=https://github.com/llvm/llvm-project/releases/download/llvmorg-21.1.8/clang-21.1.8.src.tar.xz
+MD5=0e76ea8303e5a44d482773ad339c97d1
+download
+
+SRC=compiler-rt-21.1.8.src.tar.xz
+URL=https://github.com/llvm/llvm-project/releases/download/llvmorg-21.1.8/compiler-rt-21.1.8.src.tar.xz
+MD5=4659411fe5f4d78fc987ad7be6318b27
 download

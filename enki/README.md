@@ -11,5 +11,5 @@ The history of the deployment is described in three sections:
 * [extra installations](extra/history.md)
 
 Note these notes are not intended to replace the official documentation, but
-help me to remember what I did, and provide some scripts to help rebuild
-the syhstem if needed.
+to help me to remember what I did, and provide some scripts to help rebuild
+the system if needed.

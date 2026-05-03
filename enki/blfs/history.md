@@ -108,7 +108,7 @@ We need an editor (for those that don't like `vim`):
 
 * [004-nano.sh](scripts/004-nano.sh)
 
-We need program to download files from the internet:
+We need program to download files from the internet (`wget` and `curl`):
 
 * [005-libunistring.sh](scripts/005-libunistring.sh)
 * [006-libidn2.sh](scripts/006-libidn2.sh)
@@ -124,3 +124,41 @@ We need program to download files from the internet:
 * [016-curl.sh](scripts/016-curl.sh)
 
 note: many wget tests failed, for unknown reason. The program seems to work however.
+
+We will also need `git`:
+
+* [017-git.sh](scripts/017-git.sh)
+
+Next we install sshd:
+
+* [018-openssh.sh](scripts/018-openssh.sh)
+
+Note: this script does not install the systemd unit file.
+When running under quemu, one must specify in the quemu
+launch script:
+
+    sudo qemu-system-x86_64 \
+        . . .
+        -device e1000,netdev=net0 \
+        -netdev user,id=net0,hostfwd=tcp::5555-:22
+
+and the guest can then be accessed from the host by:
+
+    ssh -p 5555 localhost
+
+We will now build some libraries usefull for building `fastfetch` (in *extra*):
+
+* [019-nasm-turbo.sh](scripts/019-nasm-turbo.sh)
+* [020-libjpeg-turbo.sh](scripts/020-libjpeg-turbo.sh)
+* [021-libpng.sh](scripts/021-libpng.sh)
+* [022-pixman.sh](scripts/022-pixman.sh)
+* [023-which.sh](scripts/023-which.sh)
+* [024-icu.sh](scripts/024-icu.sh)
+* [025-libxml2.sh](scripts/025-libxml2.sh)
+* [026-libxslt.sh](scripts/026-libxslt.sh)
+* [027-brotli.sh](scripts/027-brotli.sh)
+* [028-freetype.sh](scripts/028-freetype.sh)
+* [029-json-c.sh](scripts/029-json-c.sh)
+* 
+* [20-librsvg.sh](scripts/019-librsvg.sh)
+* [20-librsvg.sh](scripts/019-librsvg.sh)
