@@ -146,7 +146,8 @@ and the guest can then be accessed from the host by:
 
     ssh -p 5555 localhost
 
-We will now build some libraries usefull for building `fastfetch` (in *extra*):
+We will now build some libraries useful for building `chafa`
+and `fastfetch` (in *extra*):
 
 * [019-nasm-turbo.sh](scripts/019-nasm-turbo.sh)
 * [020-libjpeg-turbo.sh](scripts/020-libjpeg-turbo.sh)
@@ -159,6 +160,23 @@ We will now build some libraries usefull for building `fastfetch` (in *extra*):
 * [027-brotli.sh](scripts/027-brotli.sh)
 * [028-freetype.sh](scripts/028-freetype.sh)
 * [029-json-c.sh](scripts/029-json-c.sh)
-* 
-* [20-librsvg.sh](scripts/019-librsvg.sh)
-* [20-librsvg.sh](scripts/019-librsvg.sh)
+* [030-lzo.sh](scripts/030-lzo.sh)
+* [031-libarchive.sh](scripts/031-libarchive.sh)
+* [032-bubblewrap.sh](scripts/032-bubblewrap.sh)
+* [033-fontconfig.sh](scripts/033-fontconfig.sh)
+* [034-cairo.sh](scripts/034-cairo.sh)
+* [035-libgpg-error.sh](scripts/035-libgpg-error.sh)
+* [036-libgcrypt.sh](scripts/036-libgcrypt.sh)
+* [037-libssh2.sh](scripts/037-libssh2.sh)
+* [038-llvm.sh](scripts/038-llvm.sh)
+* [039-rustc.sh](scripts/039-rustc.sh)
+* [040-cargo-c.sh](scripts/040-cargo-c.sh)
+* [041-fribidi.sh](scripts/041-fribidi.sh)
+* [042-docutils.sh](scripts/042-docutils.sh)
+* [043-glib.sh](scripts/043-glib.sh)
+* [044-graphite2.sh](scripts/044-graphite2.sh)
+* [045-harfbuzz.sh](scripts/045-harfbuzz.sh)
+* [046-pango.sh](scripts/045-pango.sh)
+* [047-shared-mime-info.sh](scripts/047-shared-mime-info.sh)
+* [048-gdk-pixbuf.sh](scripts/048-gdk-pixbuf.sh)
+* [049-librsvg.sh](scripts/049-librsvg.sh)

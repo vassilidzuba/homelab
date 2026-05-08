@@ -9,6 +9,7 @@ fi
 #KERNEL=vmlinuz-6.18.10-lfs-13.0-systemd
 KERNEL=vmlinuz-7.0.3-lfs-13.0-systemd
 
+sudo chown vassili/vassili /tmp/vm-share
 sudo qemu-system-x86_64 \
     -kernel /boot/$KERNEL \
     -drive file=/dev/sda,format=raw \

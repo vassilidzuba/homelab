@@ -23,18 +23,20 @@ check_archive () {
                 echo "Downloading $URL"
                 pushd $SRCDIR
                 wget -O "$SOURCE" "$URL"
-                if [ "$MD5" != "" ]; then
-                    if [ "$(md5sum $SOURCE)" != "$MD5  $SOURCE" ]; then
-                        echo "BAD CHECKSUM : $SRC"
-                        exit 255
-                    fi
-                fi
                 popd
             else
                 echo "not available in shared directory: $SOURCE"
                 exit 255
             fi
         fi
+    fi
+    if [ "$MD5" != "" ]; then
+        pushd $SRCDIR
+            if [ "$(md5sum $SOURCE)" != "$MD5  $SOURCE" ]; then
+                echo "BAD CHECKSUM : $SOURCE"
+                exit 255
+            fi
+        popd
     fi
 }
 
