@@ -160,6 +160,28 @@ To mount the newly declared partitions:
     sudo systemctl daemon-reload
     sudo mount -a
 
+## Mounting USB drives
+
+When plugging the USB drive in, the kernel will create
+automatically a device, that can be identified by running
+
+    lsblk -f
+
+We will assume that is is `/dev/sdd`, with a unique 
+partition '/dev/sdd1'.
+
+We need to create a mount point. It will be (for instance):
+
+    /mnt/usbstick
+
+the mount command will then be:
+
+    sudo mount -o gid=users,fmask=113,dmask=002 /dev/sdd1 /mnt/usbstick
+
+When we don't need it anymore, we can unmopunt it:
+
+    sudo umount /dev/sdd1
+
 ## Shell
 
 We install zsh:
@@ -557,6 +579,7 @@ To develop in zig:
 - mpv (package `mpv`): video player
 - vlc (packages `vlc` and `vlc-plugins-all`): video player
 - ImageMagick (package `imagemagick`): image conversion utility
+- PDFtk (package 'pdftk'): PDF toolkit
 
 ## Miscellaneous
 

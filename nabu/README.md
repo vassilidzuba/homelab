@@ -2,7 +2,7 @@
 
 Nabu is a desktop computer running Arch.
 
-The harware configuration is :
+The hardware configuration is :
 
 * processorAMD Ryzen 7 2700X
 * 32 Go of RAM
