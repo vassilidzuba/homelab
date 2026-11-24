@@ -178,7 +178,7 @@ the mount command will then be:
 
     sudo mount -o gid=users,fmask=113,dmask=002 /dev/sdd1 /mnt/usbstick
 
-When we don't need it anymore, we can unmopunt it:
+When we don't need it anymore, we can unmount it:
 
     sudo umount /dev/sdd1
 
@@ -246,7 +246,6 @@ Packages:
 To launch, type `hyprland`.
 
 The documentation of the configuration of hyprland is in [hyprland.md](hyprland.md).
-
 
 ## ssh
 
@@ -601,3 +600,60 @@ To develop in zig:
 ## Steam
 
 - enable multilib (see [https://wiki.archlinux.org/title/Official_repositories#multilib](https://wiki.archlinux.org/title/Official_repositories#multilib)).
+
+# AI tools
+
+## Forge Neo
+
+*Forge Neo* is used to generate images.
+
+The installation is described in (https://github.com/Haoming02/sd-webui-forge-classic#installation)[https://github.com/Haoming02/sd-webui-forge-classic#installation].
+
+- ensure yay is uu-to-date
+- ensure python 3.13 is available (available in the AUR, python version installed by pacman is 3.14) : yay -S python313
+- install uv: pacman -S uv
+- install python-pip: pacman -S pythion-pip
+- clone the repo
+
+    cd ~/git
+    git clone https://github.com/Haoming02/sd-webui-forge-classic sd-webui-forge-neo --branch neo
+
+- set up *venv*
+
+    cd sd-webui-forge-neo
+    uv venv venv --python 3.13 --seed
+
+- copy the model to models/Stable_Diffusion
+
+- run the script:
+
+    venv/bin/python launch.py
+
+## Jan
+
+*Jan* is used to have a local equivalent of ChatGPT.
+
+Flatpack is required:
+
+    sudo pacman -S flatpack
+
+We need cuda:
+
+    sudo pacman -S cuda
+
+To install *Jan*, run:
+
+    flatpak install flathub ai.jan.Jan
+
+To run it:
+
+    flatpak run ai.jan.Jan
+
+Note: it is possibler to change the directories where the models are loades using
+thge menu item *general/App Data* in the aplication.
+
+I Have loaded currently the models:
+
+    Jan-v3.5-4B
+    Gemma-4-E4B-Uncensored-HauhauCS-Aggressive
+    Qwen2.5-Coder-7B-Instruct-GGUF
