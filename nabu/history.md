@@ -574,6 +574,7 @@ To develop in zig:
 
 ## Multimedia
 
+- alsa-tools (package alsa-toole): sound tools
 - haruna (paclage `haruna`): video player, front-end of mpv
 - mpv (package `mpv`): video player
 - vlc (packages `vlc` and `vlc-plugins-all`): video player
@@ -657,3 +658,43 @@ I Have loaded currently the models:
     Jan-v3.5-4B
     Gemma-4-E4B-Uncensored-HauhauCS-Aggressive
     Qwen2.5-Coder-7B-Instruct-GGUF
+
+## llama.cpp
+
+We install the binary release:
+
+   sudo pacman -S ggml-cuda
+   sudo pacman -S llama-cpp
+
+### Using llama-client
+
+We assume the model is `/mnt/backup/jan/llamacpp/models/Jan-v3.5-4B-Q4_K_XL/`
+
+To launch llama-cli:
+
+    llama-cli -m /mnt/backup/jan/llamacpp/models/Jan-v3.5-4B-Q4_K_XL/model.gguf
+
+### Using llama-tts
+
+Example command, with a prompt in the command line;
+
+    llama-tts -hf ggml-org/Qwen3-TTS-12Hz-1.7B-Base-GGUF \
+        -p "Hello world" \
+        --tts-lang en \
+        --output out.wav
+
+With a input file ans a speaker file:
+
+    llama-tts -hf ggml-org/Qwen3-TTS-12Hz-1.7B-Base-GGUF \
+        -f sample.txt \
+        --tts-lang en \
+        --tts-speaker-file speaker.wav \
+        --output out.wav
+
+To convert the output file into mp3:
+
+    ffmpeg -i out.wav out.mp3
+
+To record the speaker file (10 seconds):
+
+    arecord -d 10 sample.wav
